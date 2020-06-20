@@ -25,8 +25,6 @@ namespace dinero
             };
             var httpClient = new HttpClient(clientHandler);
             var output = await httpClient.PostAsync(uri, content);
-            var token = await output.Content.ReadAsStringAsync();
-            Token response = JsonConvert.DeserializeObject<Token>(token);
             return output;
         }
         public async Task<string> RegisterRequest(UserRegister user)

@@ -47,6 +47,7 @@ namespace dinero
             }
             else
             {
+                //TODO - change this validation
                 try
                 {
                     var response = JsonConvert.DeserializeObject<ResultMessage>(output);
@@ -54,6 +55,8 @@ namespace dinero
                 }
                 catch
                 {
+                    await DisplayAlert("Validation errors", result.StatusCode.ToString(), "Ok");
+
                 }
             }
         }
