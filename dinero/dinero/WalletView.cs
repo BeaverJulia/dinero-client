@@ -44,12 +44,15 @@ namespace dinero
             {
                 return true;
             };
+           
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
             var httpClient = new HttpClient(clientHandler);
+            
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",Application.Current.Properties["header"].ToString());
             var response = await httpClient.GetAsync(uri);
-            var output = await response.Content.ReadAsStringAsync();
-            wallets = JsonConvert.DeserializeObject<List<Wallet>>(output);
+            var output = response.Content.ReadAsAsync<object>().Result;
+            
+            /*wallets = JsonConvert.DeserializeObject<List<Wallet>>(output);*/
             return wallets;
         }
 
