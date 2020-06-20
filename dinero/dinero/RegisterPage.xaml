@@ -4,15 +4,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="dinero.LoginPage">
+             x:Class="dinero.RegisterPage">
     <ContentPage.Content>
         <StackLayout>
             <Label>Enter your name:</Label>
-            <Entry x:Name="txtLogin"/>
+            <Entry x:Name="txtName"/>
+            <Label Text="{Binding errorName}" IsVisible="{Binding isNameValid}"TextColor="DarkRed"/>
+            <Entry x:Name="txtEmail"/>
+            <Label Text="{Binding errorEmail}" IsVisible="{Binding isEmailValid}"TextColor="DarkRed"/>
             <Entry x:Name="txtPassword" IsPassword="true"/>
-            <Button x:Name="btnLogin" Text="Login"/>
-            <Label>New User?</Label>
-            <Button x:Name="btnRegister" Text="Sign In!"/>
+            <Label Text="{Binding errorPassword}" IsVisible="{Binding isPasswordValid}" TextColor="DarkRed"/>
+            <Button x:Name="btnRegister" Text="Register"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
