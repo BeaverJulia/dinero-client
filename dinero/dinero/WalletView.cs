@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using dinero.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Xamarin.Forms;
 
 namespace dinero
 {
@@ -41,7 +43,9 @@ namespace dinero
             {
                 return true;
             };
+          
             var httpClient = new HttpClient(clientHandler);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",Application.Current.Properties["header"].ToString());
             var response = await httpClient.GetStringAsync(uri);
             wallets = JsonConvert.DeserializeObject<List<Wallet>>(response);
             return wallets;

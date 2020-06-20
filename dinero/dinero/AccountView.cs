@@ -4,13 +4,14 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using dinero.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace dinero
 {
     public class AccountView
     {
-        public async Task<string> LoginRequest(UserLogin user)
+        public async Task<HttpResponseMessage> LoginRequest(UserLogin user)
         {
             dynamic json = new JObject();
             json.email = user.Email;
@@ -23,8 +24,10 @@ namespace dinero
                 return true;
             };
             var httpClient = new HttpClient(clientHandler);
-            var response = await httpClient.PostAsync(uri, content);
-            return await response.Content.ReadAsStringAsync();
+            var output = await httpClient.PostAsync(uri, content);
+            var token = await output.Content.ReadAsStringAsync();
+            Token response = JsonConvert.DeserializeObject<Token>(token);
+            return output;
         }
         public async Task<string> RegisterRequest(UserRegister user)
         {
@@ -41,7 +44,7 @@ namespace dinero
             };
             var httpClient = new HttpClient(clientHandler);
             var response = await httpClient.PostAsync(uri, content);
-           
+            var headers = response.Headers;
             return await response.Content.ReadAsStringAsync();
         }
     }

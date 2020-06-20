@@ -9,11 +9,11 @@
         <StackLayout>
             <Label>Enter your name:</Label>
             <Entry x:Name="txtName"/>
-            <Label Text="{Binding errorName}" IsVisible="{Binding isNameValid}"TextColor="DarkRed"/>
+            <Label Text="{Binding errorName}" IsVisible="{Binding isNameValid}" TextColor ="DarkRed"/>
             <Entry x:Name="txtEmail"/>
-            <Label Text="{Binding errorEmail}" IsVisible="{Binding isEmailValid}"TextColor="DarkRed"/>
+            <Label Text="{Binding errorEmail}" IsVisible="{Binding isEmailValid}" TextColor ="DarkRed"/>
             <Entry x:Name="txtPassword" IsPassword="true"/>
-            <Label Text="{Binding errorPassword}" IsVisible="{Binding isPasswordValid}" TextColor="DarkRed"/>
+            <Label Text="{Binding errorPassword}" IsVisible="{Binding isPasswordValid}" TextColor ="DarkRed"/>
             <Button x:Name="btnRegister" Text="Register"/>
         </StackLayout>
     </ContentPage.Content>

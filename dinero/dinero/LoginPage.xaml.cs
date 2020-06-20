@@ -1,5 +1,6 @@
 ﻿using System;
 using dinero.Models;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -36,8 +37,25 @@ namespace dinero
             }
 
             var result = await AccountView.LoginRequest(user);
-            /*Application.Current.Properties["header"]
-            Application.Current.SavePropertiesAsync();*/
+            var output = await result.Content.ReadAsStringAsync();
+            if (result.IsSuccessStatusCode)
+            {
+                var response = JsonConvert.DeserializeObject<Token>(output);
+                Application.Current.Properties["header"] = response.Access;
+                await Application.Current.SavePropertiesAsync();
+                await Navigation.PushAsync(new PanelPage());
+            }
+            else
+            {
+                try
+                {
+                    var response = JsonConvert.DeserializeObject<ResultMessage>(output);
+                    await DisplayAlert("Validation errors", response.Message, "Ok");
+                }
+                catch
+                {
+                }
+            }
         }
 
         private async void BtnRegister_Clicked(object sender, EventArgs e)
