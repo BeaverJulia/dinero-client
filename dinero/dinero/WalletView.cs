@@ -51,8 +51,8 @@ namespace dinero
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",Application.Current.Properties["header"].ToString());
             var response = await httpClient.GetAsync(uri);
             var output = response.Content.ReadAsStringAsync().Result;
-            
-            /*wallets = JsonConvert.DeserializeObject<List<Wallet>>(output);*/
+            var bla = response.Content.ReadAsStringAsync();
+            wallets = JsonConvert.DeserializeObject<List<Wallet>>(output);
             return wallets;
         }
 

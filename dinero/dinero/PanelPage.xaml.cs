@@ -19,12 +19,14 @@ namespace dinero
         public PanelPage()
         {
             InitializeComponent();
-            wallets = new List<Wallet>();
-            walletView = new WalletView();
             GetWallets();
+            walletView = new WalletView();
+           
+
         }
         public async void GetWallets()
         {
+            wallets = new List<Wallet>();
             wallets = await walletView.GetRequest();
         }
     }

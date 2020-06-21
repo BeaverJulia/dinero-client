@@ -6,7 +6,7 @@ namespace dinero.Models
     {
         public ServerUris()
         {
-            BaseUri = "https://dinero.azurewebsites.net/v1/api";
+            BaseUri = "https://dinero.azurewebsites.net/api/v1";
             LoginUri = new Uri(BaseUri + "/accounts​/login");
             RegisterUri = new Uri(BaseUri + "/accounts/registration");
             CreateWalletUri = new Uri(BaseUri + "/payments/wallets");

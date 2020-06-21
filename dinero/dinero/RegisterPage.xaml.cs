@@ -13,6 +13,7 @@ namespace dinero
         public RegisterPage()
         {
             InitializeComponent();
+            AccountView = new AccountView();
             btnRegister.Clicked += BtnRegister_Clicked;
         }
 
