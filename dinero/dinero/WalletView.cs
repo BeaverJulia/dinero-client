@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using dinero.Models;
@@ -38,19 +39,18 @@ namespace dinero
         {
             dynamic json = new JObject();
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
-            var uri = new Uri("https://286ad451db46.ngrok.io/api/v1/payments/wallets");
+            var uri = new Uri("https://dinero.azurewebsites.net/api/v1/payments/wallets");
             var clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
             {
                 return true;
             };
-           
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+            clientHandler.SslProtocols = SslProtocols.Ssl3;
             var httpClient = new HttpClient(clientHandler);
             
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",Application.Current.Properties["header"].ToString());
             var response = await httpClient.GetAsync(uri);
-            var output = response.Content.ReadAsAsync<object>().Result;
+            var output = response.Content.ReadAsStringAsync().Result;
             
             /*wallets = JsonConvert.DeserializeObject<List<Wallet>>(output);*/
             return wallets;
