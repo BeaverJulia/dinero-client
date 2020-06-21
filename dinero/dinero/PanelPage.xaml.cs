@@ -20,12 +20,13 @@ namespace dinero
         {
             InitializeComponent();
             GetWallets();
-            walletView = new WalletView();
+            
            
 
         }
         public async void GetWallets()
         {
+            walletView = new WalletView();
             wallets = new List<Wallet>();
             wallets = await walletView.GetRequest();
         }

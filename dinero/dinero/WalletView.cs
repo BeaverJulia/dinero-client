@@ -16,7 +16,7 @@ namespace dinero
 {
     public class WalletView
     {
-        private List<Wallet> wallets;
+       
         public async Task<string> CreateRequest(Wallet wallet)
         {
             dynamic json = new JObject();
@@ -52,7 +52,7 @@ namespace dinero
             var response = await httpClient.GetAsync(uri);
             var output = response.Content.ReadAsStringAsync().Result;
             var bla = response.Content.ReadAsStringAsync();
-            wallets = JsonConvert.DeserializeObject<List<Wallet>>(output);
+            var wallets = JsonConvert.DeserializeObject<List<Wallet>>(output);
             return wallets;
         }
 
