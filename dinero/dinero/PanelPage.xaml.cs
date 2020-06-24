@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using dinero.Models;
+using GalaSoft.MvvmLight.Command;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,12 +24,30 @@ namespace dinero
             WalletView = new WalletView();
             WalletsList = GetWallets();
             Wallets.ItemsSource = WalletsList;
-
+         
         }
         public List<Wallet> GetWallets()
         {
             WalletView = new WalletView();
             return WalletView.GetRequest().Result;
+        }
+
+
+
+        public RelayCommand<object> OKCommand
+        {
+            get
+            {
+                if (_okCommand == null)
+                    _okCommand = new RelayCommand<object>(OkCommand_Execute);
+                return _okCommand;
+            }
+        }
+        private RelayCommand<object> _okCommand = null;
+
+        private void OkCommand_Execute(object obj)
+        {
+            
         }
     }
 }
