@@ -14,21 +14,20 @@ namespace dinero
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PanelPage : ContentPage
     {
-        private List<Wallet> wallets;
-        private WalletView walletView;
+        public List<Wallet> WalletsList;
+        private WalletView WalletView;
         public PanelPage()
         {
             InitializeComponent();
-            GetWallets();
-            
-           
+            WalletsList = new List<Wallet>();
+            WalletsList = GetWallets().Result;
+            Wallets.ItemsSource = WalletsList;
 
         }
-        public async void GetWallets()
+        public async Task<List<Wallet>> GetWallets()
         {
-            walletView = new WalletView();
-            wallets = new List<Wallet>();
-            wallets = await walletView.GetRequest();
+            WalletView = new WalletView();
+            return await WalletView.GetRequest();
         }
     }
 }

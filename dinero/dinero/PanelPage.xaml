@@ -8,13 +8,15 @@
              x:Class="dinero.PanelPage">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding wallets}" >
+            <ListView x:Name="Wallets">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout BackgroundColor="Khaki" Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Wallet}" FontSize="Small"
+                                    <Label Text="{Binding Name}" FontSize="Small"
+                                           TextColor="OrangeRed"/>
+                                    <Label Text="{Binding Balance}" FontSize="Small"
                                            TextColor="OrangeRed"/>
                                 </StackLayout>
                             </StackLayout>
