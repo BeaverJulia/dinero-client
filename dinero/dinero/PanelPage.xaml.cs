@@ -20,14 +20,15 @@ namespace dinero
         {
             InitializeComponent();
             WalletsList = new List<Wallet>();
-            WalletsList = GetWallets().Result;
+            WalletView = new WalletView();
+            WalletsList = GetWallets();
             Wallets.ItemsSource = WalletsList;
 
         }
-        public async Task<List<Wallet>> GetWallets()
+        public List<Wallet> GetWallets()
         {
             WalletView = new WalletView();
-            return await WalletView.GetRequest();
+            return WalletView.GetRequest().Result;
         }
     }
 }
