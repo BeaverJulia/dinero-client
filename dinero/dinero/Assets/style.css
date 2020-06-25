@@ -1,0 +1,47 @@
+^ContentPage {
+    background-color: #fdfdfd;
+    padding: 16;
+}
+
+^NavigationPage {
+    -xf-bar-background-color: #f77f00;
+    color: #ffffff;
+}
+
+^Button {
+    background-color: #f77f00;
+    color: #ffffff;
+    border-radius: 4;
+}
+
+^Label {
+    color: #0c0c0c;
+}
+
+
+.pageTitle {
+    text-align: center;
+    font-size: 20;
+    font-style: bold;
+}
+
+.loginInputs, .registerInputs {
+    margin-top: 10;
+    margin-bottom: 40;
+}
+
+.appDescription {
+    font-size: 18;
+}
+
+.danger {
+    color: DarkRed;
+}
+
+.transactionItem {
+    padding: 8;
+    border-radius: 10;
+    background-color: #ededed;
+    margin-top: 5;
+    margin-bottom: 5;
+}
