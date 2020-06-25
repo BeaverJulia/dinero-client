@@ -6,6 +6,6 @@
              mc:Ignorable="d"
              x:Class="dinero.App">
     <Application.Resources>
-
+        <StyleSheet Source="/Assets/style.css" />
     </Application.Resources>
 </Application>

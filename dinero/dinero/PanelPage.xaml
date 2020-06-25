@@ -8,6 +8,7 @@
              x:Class="dinero.PanelPage">
     <ContentPage.Content>
         <StackLayout>
+            <Label StyleClass="pageTitle">Dashboard</Label>
             <ListView x:Name="Wallets">
                 <ListView.ItemTemplate>
                     <DataTemplate>
