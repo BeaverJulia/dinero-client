@@ -37,3 +37,11 @@
 .danger {
     color: DarkRed;
 }
+
+.transactionItem {
+    padding: 8;
+    border-radius: 10;
+    background-color: #ededed;
+    margin-top: 5;
+    margin-bottom: 5;
+}
