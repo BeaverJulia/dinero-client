@@ -14,11 +14,12 @@ using Xamarin.Forms.Xaml;
 namespace dinero
 {
     [XamlCompilation(XamlCompilationOptions.Skip)]
-    public partial class PanelPage : ContentPage
+    public partial class PanelPage : INotifyPropertyChanged
     {
         public List<Wallet> WalletsList;
         private WalletView WalletView;
         public WalletDetailsPage _WalletDetails;
+        private RelayCommand<Wallet> _okCommand { get; set; }
         public PanelPage()
         {
             InitializeComponent();
@@ -28,15 +29,19 @@ namespace dinero
             Wallets.ItemsSource = WalletsList;
             _WalletDetails= new WalletDetailsPage();
             BindingContext = _WalletDetails;
+            _okCommand = new RelayCommand<Wallet>(OkCommand_Execute);
         }
+        
 
+        private void OkCommand_Execute(Wallet obj)
+        {
+            var bla = obj.Currency;
+        }
         public List<Wallet> GetWallets()
         {
             WalletView = new WalletView();
             return WalletView.GetRequest().Result;
         }
-
-
 
       
     }

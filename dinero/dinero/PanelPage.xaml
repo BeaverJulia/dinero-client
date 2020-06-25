@@ -20,7 +20,7 @@
                                     <Label Text="{Binding Balance}" FontSize="Small"
                                            TextColor="OrangeRed"/>
 
-                                    <Button Text="Details" Command="{Binding _okCommand, Source=WalletDetailsPage}"  CommandParameter="{Binding .}"/>
+                                    <Button Text="Details" Command="{Binding _okCommand, Source=PanelPage}"  CommandParameter="{Binding .}"/>
                                 
                                 </StackLayout>
                             </StackLayout>
