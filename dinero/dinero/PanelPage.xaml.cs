@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,11 +13,12 @@ using Xamarin.Forms.Xaml;
 
 namespace dinero
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class PanelPage : ContentPage
     {
         public List<Wallet> WalletsList;
         private WalletView WalletView;
+        public WalletDetailsPage _WalletDetails;
         public PanelPage()
         {
             InitializeComponent();
@@ -24,8 +26,10 @@ namespace dinero
             WalletView = new WalletView();
             WalletsList = GetWallets();
             Wallets.ItemsSource = WalletsList;
-         
+            _WalletDetails= new WalletDetailsPage();
+            BindingContext = _WalletDetails;
         }
+
         public List<Wallet> GetWallets()
         {
             WalletView = new WalletView();
@@ -34,20 +38,6 @@ namespace dinero
 
 
 
-        public RelayCommand<object> OKCommand
-        {
-            get
-            {
-                if (_okCommand == null)
-                    _okCommand = new RelayCommand<object>(OkCommand_Execute);
-                return _okCommand;
-            }
-        }
-        private RelayCommand<object> _okCommand = null;
-
-        private void OkCommand_Execute(object obj)
-        {
-            
-        }
+      
     }
-}
+    }

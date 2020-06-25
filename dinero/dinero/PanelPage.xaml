@@ -18,7 +18,9 @@
                                            TextColor="OrangeRed"/>
                                     <Label Text="{Binding Balance}" FontSize="Small"
                                            TextColor="OrangeRed"/>
-                                    <Button Text="Details" Command="{Binding Path=BindingContext.Button_OnClicked, Source={x:Reference Page}}" CommandParameter="{Binding .}"/>
+
+                                    <Button Text="Details" Command="{Binding _okCommand, Source=WalletDetailsPage}"  CommandParameter="{Binding .}"/>
+                                
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
