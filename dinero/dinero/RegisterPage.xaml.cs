@@ -14,6 +14,7 @@ namespace dinero
         {
             InitializeComponent();
             AccountView = new AccountView();
+            btnLogin.Clicked += BtnLogin_Clicked;
             btnRegister.Clicked += BtnRegister_Clicked;
         }
 
@@ -42,6 +43,11 @@ namespace dinero
             }
 
             var result = await AccountView.RegisterRequest(user);
+        }
+        
+        private async void BtnLogin_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoginPage());
         }
     }
 }
