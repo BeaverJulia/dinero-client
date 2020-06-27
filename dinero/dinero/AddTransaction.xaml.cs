@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using dinero.Models;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -30,7 +33,7 @@ namespace dinero
             currency = (Currency)blaPicker.SelectedItem;
             transaction.Currency = currency;
             user.Name = txtToUser.Text;
-            transaction.ToUser = user;
+            transaction.To_User = user;
             if (transaction.Amount < 0)
             {
                 await DisplayAlert("Validation errors", "Please provide correct Amount", "Ok");
@@ -44,13 +47,24 @@ namespace dinero
             }
 
             var result = await Transactionview.CreateRequest(transaction);
+            var output = await result.Content.ReadAsStringAsync();
+            
             if (result.IsSuccessStatusCode)
             {
-                await DisplayAlert("Transaction completed", result.ReasonPhrase, "Ok");
+                
+                await DisplayAlert("Transaction completed", "Transaction completed", "Ok");
             }
             else
             {
-                await DisplayAlert("Something went wrong", result.ReasonPhrase, "Ok");
+                try
+                {
+                    var response = JsonConvert.DeserializeObject<List<Output>>(output);
+                    await DisplayAlert("Something went wrong", response[0].Detail[0].ToString(), "Ok");
+                }
+                catch
+                {
+                    await DisplayAlert("Something went wrong", output, "Ok");
+                }
 
             }
         }

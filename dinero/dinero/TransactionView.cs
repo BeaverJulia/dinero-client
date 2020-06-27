@@ -28,18 +28,13 @@ namespace dinero
             var response = await httpClient.GetAsync(new Uri(ServerUrls.GetTransactions+limit.ToString())).ConfigureAwait(false);
             var output = response.Content.ReadAsStringAsync().Result;
             //wrong output
-            var transactions = JsonConvert.DeserializeObject<List<Transaction>>(output);
-            return transactions;
+            var transactions = JsonConvert.DeserializeObject<GenericOutput<Transaction>>(output);
+            return transactions.Results;
         }
         public async Task<HttpResponseMessage> CreateRequest(Transaction transaction)
         {
             dynamic json = new JObject();
-            /*dynamic currency = new JObject();
-            dynamic user = new JObject();
-            user.name = transaction.ToUser.Name;
-            currency.name = transaction.Currency.name;
-            currency.code = transaction.Currency.code;*/
-            json.to_user = 6;
+            json.to_user = 4;
             json.currency = transaction.Currency.code;
             json.amount = transaction.Amount;
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");

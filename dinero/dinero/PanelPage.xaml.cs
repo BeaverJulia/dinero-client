@@ -20,15 +20,12 @@ namespace dinero
         public List<Wallet> WalletsList;
         private WalletView WalletView;
         private TransactionView TransactionView;
-        public List<Transaction> TransactionsList;
         public PanelPage()
         {
             InitializeComponent();
             WalletsList = new List<Wallet>();
-            TransactionsList = new List<Transaction>();
             WalletsList = GetWallets();
-            /*TransactionsList = GetTransactions();*/
-            Transactions.ItemsSource = TransactionsList;
+            Transactions.ItemsSource = GetTransactions();
             Wallets.ItemsSource = WalletsList;
             btnNewTransaction.Clicked += BtnNewTransaction_Clicked;
             BindingContext = new WalletDetailsPage();
@@ -45,11 +42,18 @@ namespace dinero
             return WalletView.GetRequest().Result;
         }
 
-        /*public List<Transaction> GetTransactions()
+        public List<Transaction> GetTransactions()
         {
+            
             TransactionView = new TransactionView();
-            return TransactionView.GetRequests(10).Result;
-        }*/
+            var transactions = TransactionView.GetRequests(10).Result;
+            foreach (var transaction in transactions)
+            {
+                var dateTime = DateTimeOffset.Parse(transaction.Paid_At, System.Globalization.CultureInfo.InvariantCulture);
+                transaction.Paid_At = dateTime.DateTime.ToLongDateString();
+            }
+            return transactions;
+        }
       
     }
     }

@@ -1,4 +1,5 @@
 using System;
+using Newtonsoft.Json;
 
 namespace dinero.Models
 {
@@ -6,10 +7,11 @@ namespace dinero.Models
     {
         public int Id { get; }
         public string Status { get; set; }
+        [JsonProperty("From_User")]
         public User FromUser { get; set; }
-        public User ToUser { get; set; }
+        public User To_User { get; set; }
         public float Amount { get; set; }
         public Currency Currency { get; set; }
-        public DateTime PaidAt { get; set; }
+        public string Paid_At { get; set; }
     }
 }

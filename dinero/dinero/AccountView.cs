@@ -44,5 +44,18 @@ namespace dinero
             var response = await httpClient.PostAsync(new Uri("https://dinero.azurewebsites.net/api/v1/accounts/registration"), content);
             return response;
         }
+        public async Task<HttpResponseMessage> UserSearch(String user, string limit)
+        {
+            var query = "?limit=" + limit + "&search=" + user;
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
+            var httpClient = new HttpClient(clientHandler);
+            var output = await httpClient.GetAsync(new Uri(ServerUrls.UserSearch+query));
+
+            return output;
+        }
     }
 }
