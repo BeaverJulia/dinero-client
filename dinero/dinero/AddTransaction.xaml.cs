@@ -16,6 +16,7 @@ namespace dinero
             InitializeComponent();
             BindingContext = new PickerMVVMViewModel();
             btnSend.Clicked += BtnSend_Clicked;
+           
         }
 
         private async void BtnSend_Clicked(object sender, EventArgs e)

@@ -18,8 +18,8 @@
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Name}" />
                                     <Label Text="{Binding Balance}" />
-                                    <Button Text="Details"  Command="{Binding _okCommand}"
-                                    />
+                                        <Button  x:Name="btnDetails" Text="Details"  Command="{Binding OkCommand_Execute}" CommandParameter="{Binding Wallet}"
+                                        />
                                     </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -28,7 +28,26 @@
             </ListView>
                
             </Frame>
-          
+            <Frame StyleClass="walletItem">
+                <ListView x:Name="Transactions">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding FromUser}" />
+                                        <Label Text="{Binding PaidAt}" />
+                                        <Label Text="{Binding Amount}" />
+                                        <Button  x:Name="btnDetails" Text="Details"  Command="{Binding OkCommand_Execute}" CommandParameter="{Binding Wallet}"
+                                        />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Frame>
             <Button x:Name="btnNewTransaction" Text="New Transaction"/>
         </StackLayout>
     </ContentPage.Content>

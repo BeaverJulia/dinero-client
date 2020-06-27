@@ -19,14 +19,12 @@ namespace dinero
         {
             InitializeComponent();
             _okCommand = new Command(OkCommand_Execute);
-
+            
         }
-
-
 
         private ICommand _okCommand { get; set; }
 
-        private  void OkCommand_Execute(Object obj)
+        private  void OkCommand_Execute(object obj)
         {
             var bla = obj;
         }

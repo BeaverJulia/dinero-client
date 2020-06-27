@@ -19,27 +19,24 @@ namespace dinero
     {
         public List<Wallet> WalletsList;
         private WalletView WalletView;
-        private ICommand _okCommand { get;  }
+        private TransactionView TransactionView;
+        public List<Transaction> TransactionsList;
         public PanelPage()
         {
             InitializeComponent();
             WalletsList = new List<Wallet>();
-            WalletView = new WalletView();
+            TransactionsList = new List<Transaction>();
             WalletsList = GetWallets();
+            TransactionsList = GetTransactions();
+            Transactions.ItemsSource = TransactionsList;
             Wallets.ItemsSource = WalletsList;
-            _okCommand = new Command(OkCommand_Execute);
             btnNewTransaction.Clicked += BtnNewTransaction_Clicked;
-           
+            BindingContext = new WalletDetailsPage();
         }
 
         private async void BtnNewTransaction_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddTransaction());
-        }
-
-        public void OkCommand_Execute(Object obj)
-        {
-            var bla = obj;
         }
 
         public List<Wallet> GetWallets()
@@ -48,6 +45,11 @@ namespace dinero
             return WalletView.GetRequest().Result;
         }
 
+        public List<Transaction> GetTransactions()
+        {
+            TransactionView = new TransactionView();
+            return TransactionView.GetRequests(10).Result;
+        }
       
     }
     }
