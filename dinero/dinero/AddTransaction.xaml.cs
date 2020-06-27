@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using dinero.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -72,10 +73,15 @@ namespace dinero
         {
             AccountView = new AccountView();
             var keyword = UserSearch.Text;
-            var output =AccountView.UserSearch(keyword, "5").Result;
-            var response = output.Content.ReadAsStringAsync().Result;
+            var response = Search(keyword).Result;
             var users = JsonConvert.DeserializeObject<GenericOutput<User>>(response);
             SuggestedUsers.ItemsSource= users.Results;
+        }
+        private async Task<string> Search (string key)
+        {
+            var output = await AccountView.UserSearch(key, "5");
+            var response = await output.Content.ReadAsStringAsync();
+            return response;
         }
     }
 }
