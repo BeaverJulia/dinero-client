@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using dinero.Models;
 using GalaSoft.MvvmLight.Command;
 using Xamarin.Forms;
@@ -14,12 +15,11 @@ using Xamarin.Forms.Xaml;
 namespace dinero
 {
     [XamlCompilation(XamlCompilationOptions.Skip)]
-    public partial class PanelPage : INotifyPropertyChanged
+    public partial class PanelPage : ContentPage
     {
         public List<Wallet> WalletsList;
         private WalletView WalletView;
-        public WalletDetailsPage _WalletDetails;
-        private RelayCommand<Wallet> _okCommand { get; set; }
+        private ICommand _okCommand { get;  }
         public PanelPage()
         {
             InitializeComponent();
@@ -27,16 +27,21 @@ namespace dinero
             WalletView = new WalletView();
             WalletsList = GetWallets();
             Wallets.ItemsSource = WalletsList;
-            _WalletDetails= new WalletDetailsPage();
-            BindingContext = _WalletDetails;
-            _okCommand = new RelayCommand<Wallet>(OkCommand_Execute);
+            _okCommand = new Command(OkCommand_Execute);
+            btnNewTransaction.Clicked += BtnNewTransaction_Clicked;
+           
         }
-        
 
-        private void OkCommand_Execute(Wallet obj)
+        private async void BtnNewTransaction_Clicked(object sender, EventArgs e)
         {
-            var bla = obj.Currency;
+            await Navigation.PushAsync(new AddTransaction());
         }
+
+        public void OkCommand_Execute(Object obj)
+        {
+            var bla = obj;
+        }
+
         public List<Wallet> GetWallets()
         {
             WalletView = new WalletView();

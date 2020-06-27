@@ -9,25 +9,27 @@
     <ContentPage.Content>
         <StackLayout>
             <Label StyleClass="pageTitle">Dashboard</Label>
-            <ListView x:Name="Wallets">
+            <Frame StyleClass="walletItem">
+                <ListView x:Name="Wallets">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="Khaki" Orientation="Vertical">
+                            <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" FontSize="Small"
-                                           TextColor="OrangeRed"/>
-                                    <Label Text="{Binding Balance}" FontSize="Small"
-                                           TextColor="OrangeRed"/>
-
-                                    <Button Text="Details" Command="{Binding _okCommand, Source=PanelPage}"  CommandParameter="{Binding .}"/>
-                                
-                                </StackLayout>
+                                    <Label Text="{Binding Name}" />
+                                    <Label Text="{Binding Balance}" />
+                                    <Button Text="Details"  Command="{Binding _okCommand}"
+                                    />
+                                    </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+               
+            </Frame>
+          
+            <Button x:Name="btnNewTransaction" Text="New Transaction"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

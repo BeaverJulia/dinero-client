@@ -28,6 +28,7 @@
 .loginInputs, .registerInputs {
     margin-top: 10;
     margin-bottom: 40;
+    color: #f77f00;
 }
 
 .appDescription {
@@ -44,4 +45,12 @@
     background-color: #ededed;
     margin-top: 5;
     margin-bottom: 5;
+}
+.walletItem {
+    padding: 8;
+    border-radius: 10;
+    background-color: #ededed;
+    margin-top: 5;
+    margin-bottom: 5;
+    color: chocolate;
 }
