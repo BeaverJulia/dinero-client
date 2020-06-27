@@ -13,7 +13,7 @@ namespace dinero
     public partial class AddTransaction : ContentPage
     {
         public TransactionView Transactionview;
-
+        public AccountView AccountView;
         public AddTransaction()
         {
             InitializeComponent();
@@ -32,8 +32,7 @@ namespace dinero
             var currency = new Currency();
             currency = (Currency)blaPicker.SelectedItem;
             transaction.Currency = currency;
-            user.Name = txtToUser.Text;
-            transaction.To_User = user;
+            
             if (transaction.Amount < 0)
             {
                 await DisplayAlert("Validation errors", "Please provide correct Amount", "Ok");
@@ -67,6 +66,16 @@ namespace dinero
                 }
 
             }
+        }
+
+        private void UserSearch_OnSearchButtonPressed(object sender, EventArgs e)
+        {
+            AccountView = new AccountView();
+            var keyword = UserSearch.Text;
+            var output =AccountView.UserSearch(keyword, "5").Result;
+            var response = output.Content.ReadAsStringAsync().Result;
+            var users = JsonConvert.DeserializeObject<GenericOutput<User>>(response);
+            SuggestedUsers.ItemsSource= users.Results;
         }
     }
 }

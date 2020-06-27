@@ -12,9 +12,10 @@
                 
                         <Label>Create Transaction</Label>
                         <Label>To whom?</Label>
-                        <Entry x:Name="txtToUser" Text="User Name"/>
+                    <SearchBar x:Name="UserSearch" SearchButtonPressed="UserSearch_OnSearchButtonPressed"/>
+                        <ListView x:Name="SuggestedUsers"/>
                         <Label>How much?</Label>
-                        <Entry x:Name="txtAmount" Text="100" IsPassword="true"/>
+                        <Entry x:Name="txtAmount" Text="100"/>
                         <Picker x:Name="blaPicker"  Title="Select"
                                 ItemsSource="{Binding CurrenciesList}"
                                 ItemDisplayBinding="{Binding name }"

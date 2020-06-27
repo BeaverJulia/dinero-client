@@ -53,8 +53,8 @@ namespace dinero
                 return true;
             };
             var httpClient = new HttpClient(clientHandler);
-            var output = await httpClient.GetAsync(new Uri(ServerUrls.UserSearch+query));
-
+            var uri = new Uri(ServerUrls.UserSearch + query);
+            var output = await httpClient.GetAsync(uri);
             return output;
         }
     }

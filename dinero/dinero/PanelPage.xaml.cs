@@ -33,7 +33,7 @@ namespace dinero
 
         private async void BtnNewTransaction_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddTransaction());
+            await Navigation.PushModalAsync(new AddTransaction());
         }
 
         public List<Wallet> GetWallets()
@@ -55,5 +55,5 @@ namespace dinero
             return transactions;
         }
       
-    }
+        }
     }

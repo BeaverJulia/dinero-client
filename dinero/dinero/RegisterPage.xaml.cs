@@ -48,7 +48,7 @@ namespace dinero
             if (result.IsSuccessStatusCode)
             {
                 await DisplayAlert("Account Created", "Account created, go to login page", "Ok");
-                await Navigation.PushAsync(new LoginPage());
+                await Navigation.PushModalAsync(new LoginPage());
             }
             else
             {

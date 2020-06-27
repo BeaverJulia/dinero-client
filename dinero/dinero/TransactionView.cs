@@ -27,7 +27,6 @@ namespace dinero
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Application.Current.Properties["header"].ToString());
             var response = await httpClient.GetAsync(new Uri(ServerUrls.GetTransactions+limit.ToString())).ConfigureAwait(false);
             var output = response.Content.ReadAsStringAsync().Result;
-            //wrong output
             var transactions = JsonConvert.DeserializeObject<GenericOutput<Transaction>>(output);
             return transactions.Results;
         }
@@ -35,7 +34,7 @@ namespace dinero
         {
             dynamic json = new JObject();
             json.to_user = 4;
-            json.currency = transaction.Currency.code;
+            json.currency = transaction.Currency.Code;
             json.amount = transaction.Amount;
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
             var clientHandler = new HttpClientHandler();

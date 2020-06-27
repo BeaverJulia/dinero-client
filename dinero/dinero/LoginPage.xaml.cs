@@ -43,7 +43,7 @@ namespace dinero
                 var response = JsonConvert.DeserializeObject<Token>(output);
                 Application.Current.Properties["header"] = response.Access;
                 await Application.Current.SavePropertiesAsync();
-                await Navigation.PushAsync(new PanelPage());
+                await Navigation.PushModalAsync(new PanelPage());
             }
             else
             {
