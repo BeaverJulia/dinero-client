@@ -1,22 +1,37 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using dinero.Models;
 
 namespace dinero
 {
-    public class PickerMVVMViewModel
+    public class PickerMVVMViewModel : INotifyPropertyChanged
     {
-        public List<Currency> CurrenciesList { get; set; }
-        public CurrenciesView CurrenciesView { get; set; }
         public PickerMVVMViewModel()
         {
             CurrenciesList = new List<Currency>();
             CurrenciesView = new CurrenciesView();
-            var bla= CurrenciesView.GetRequest().Result;
-            CurrenciesList = bla;
+            CurrenciesList = CurrenciesView.GetRequest().Result;
         }
 
+        public List<Currency> CurrenciesList { get; set; }
+        public CurrenciesView CurrenciesView { get; set; }
+        private Currency _selectedCurrency { get; set; }
+
+        public Currency SelectedCurrency
+        {
+            get => _selectedCurrency;
+            set
+            {
+                if (_selectedCurrency != value) _selectedCurrency = value;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
-   
 }

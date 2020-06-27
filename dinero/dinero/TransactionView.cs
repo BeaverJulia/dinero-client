@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace dinero
 {
-    class TransactionView
+    public class TransactionView
     {
         public async Task<List<Transaction>> GetRequests(int limit)
         {
@@ -30,7 +30,7 @@ namespace dinero
             var transactions = JsonConvert.DeserializeObject<List<Transaction>>(output);
             return transactions;
         }
-        public async Task<string> CreateRequest(Transaction transaction)
+        public async Task<HttpResponseMessage> CreateRequest(Transaction transaction)
         {
             dynamic json = new JObject();
             json.toUser = transaction.ToUser;
@@ -46,7 +46,7 @@ namespace dinero
             var httpClient = new HttpClient(clientHandler);
             var response = await httpClient.PostAsync(new Uri(ServerUrls.PostTransactions), content);
 
-            return await response.Content.ReadAsStringAsync();
+            return  response;
         }
     }
 }
