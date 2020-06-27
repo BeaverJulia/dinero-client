@@ -9,7 +9,7 @@ namespace dinero
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddTransaction : ContentPage
     {
-        public TransactionView TransactionView;
+        public TransactionView Transactionview;
 
         public AddTransaction()
         {
@@ -20,13 +20,16 @@ namespace dinero
 
         private async void BtnSend_Clicked(object sender, EventArgs e)
         {
+            Transactionview = new TransactionView();
             var transaction = new Transaction();
             var user = new User();
             transaction.Amount = float.Parse(txtAmount.Text,
                 CultureInfo.InvariantCulture);
-            transaction.Currency = (Currency) blaPicker.SelectedItem;
+            var currency = new Currency();
+            currency = (Currency)blaPicker.SelectedItem;
+            transaction.Currency = currency;
             user.Name = txtToUser.Text;
-            transaction.FromUser = user;
+            transaction.ToUser = user;
             if (transaction.Amount < 0)
             {
                 await DisplayAlert("Validation errors", "Please provide correct Amount", "Ok");
@@ -39,7 +42,7 @@ namespace dinero
                 return;
             }
 
-            var result = await TransactionView.CreateRequest(transaction);
+            var result = await Transactionview.CreateRequest(transaction);
             if (result.IsSuccessStatusCode)
             {
                 await DisplayAlert("Transaction completed", result.ReasonPhrase, "Ok");

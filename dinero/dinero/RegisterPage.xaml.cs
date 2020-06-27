@@ -1,5 +1,6 @@
 ﻿using System;
 using dinero.Models;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -43,6 +44,27 @@ namespace dinero
             }
 
             var result = await AccountView.RegisterRequest(user);
+            var output = await result.Content.ReadAsStringAsync();
+            if (result.IsSuccessStatusCode)
+            {
+                await DisplayAlert("Account Created", "Account created, go to login page", "Ok");
+                await Navigation.PushAsync(new LoginPage());
+            }
+            else
+            {
+                //TODO - change this validation
+                try
+                {
+                    var response = JsonConvert.DeserializeObject<ResultMessage>(output);
+                    await DisplayAlert("Validation errors", response.Message, "Ok");
+                }
+                catch
+                {
+                    await DisplayAlert("Validation errors", result.StatusCode.ToString(), "Ok");
+
+                }
+            }
+
         }
         
         private async void BtnLogin_Clicked(object sender, EventArgs e)
