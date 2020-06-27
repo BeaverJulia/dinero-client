@@ -10,13 +10,13 @@
             <Label StyleClass="pageTitle">Create an account</Label>
             <StackLayout StyleClass="registerInputs">
                 <Label>Enter your name:</Label>
-                <Entry x:Name="txtName"/>
+                <Entry x:Name="txtName" Placeholder="Enter Name"/>
                 <Label Text="{Binding errorName}" IsVisible="{Binding isNameValid}" StyleClass="danger"/>
                 <Label>Enter your email:</Label>
-                <Entry x:Name="txtEmail"/>
+                <Entry x:Name="txtEmail" Placeholder="Enter email"/>
                 <Label Text="{Binding errorEmail}" IsVisible="{Binding isEmailValid}" StyleClass="danger"/>
                 <Label>What's your password?</Label>
-                <Entry x:Name="txtPassword" IsPassword="true"/>
+                <Entry x:Name="txtPassword" Placeholder="Enter password" IsPassword="true"/>
                 <Label Text="{Binding errorPassword}" IsVisible="{Binding isPasswordValid}" StyleClass="danger"/>
                 <Button x:Name="btnRegister" Text="Register"/>
             </StackLayout>

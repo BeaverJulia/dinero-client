@@ -27,7 +27,7 @@ namespace dinero
             WalletsList = new List<Wallet>();
             TransactionsList = new List<Transaction>();
             WalletsList = GetWallets();
-            TransactionsList = GetTransactions();
+            /*TransactionsList = GetTransactions();*/
             Transactions.ItemsSource = TransactionsList;
             Wallets.ItemsSource = WalletsList;
             btnNewTransaction.Clicked += BtnNewTransaction_Clicked;
@@ -45,11 +45,11 @@ namespace dinero
             return WalletView.GetRequest().Result;
         }
 
-        public List<Transaction> GetTransactions()
+        /*public List<Transaction> GetTransactions()
         {
             TransactionView = new TransactionView();
             return TransactionView.GetRequests(10).Result;
-        }
+        }*/
       
     }
     }

@@ -35,7 +35,7 @@
                             <ViewCell>
                                 <StackLayout Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding FromUser}" />
+                                        <Label Text="{Binding FromUser}"  />
                                         <Label Text="{Binding PaidAt}" />
                                         <Label Text="{Binding Amount}" />
                                         <Button  x:Name="btnDetails" Text="Details"  Command="{Binding OkCommand_Execute}" CommandParameter="{Binding Wallet}"
