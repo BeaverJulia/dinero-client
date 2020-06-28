@@ -70,5 +70,33 @@ namespace dinero
             var users = JsonConvert.DeserializeObject<GenericOutput<User>>(response);
             return users.Results;
         }
+        public async Task<HttpResponseMessage> PasswordRequest(string email)
+        {
+            dynamic json = new JObject();
+            json.email = email;
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
+            var httpClient = new HttpClient(clientHandler);
+            var output = await httpClient.PostAsync(new Uri(ServerUrls.GetPassword), content);
+            return output;
+        }
+        public async Task<HttpResponseMessage> PasswordResendRequest(string email)
+        {
+            dynamic json = new JObject();
+            json.email = email;
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
+            var httpClient = new HttpClient(clientHandler);
+            var output = await httpClient.PostAsync(new Uri(ServerUrls.ResendEmail), content);
+            return output;
+        }
     }
 }

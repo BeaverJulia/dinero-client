@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="dinero.AddWallet">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame StyleClass="loginInputs">
+                <StackLayout>
+                    <Label>Create Wallet</Label>
+                    <Label>Name</Label>
+                    <Entry x:Name="txtName" Text="100" />
+                    <Label>Balance</Label>
+                    <Entry x:Name="txtBalance" Text="100" />
+                    <StackLayout>
+                        <Picker x:Name="blaPicker" Title="Select"
+                                ItemsSource="{Binding CurrenciesList}"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedCurrency}" />
+                    </StackLayout>
+                    <Button x:Name="btnCreate" Text="Create Wallet" Clicked="BtnCreate_OnClicked"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace dinero.Models
 {
     public static class ServerUrls
@@ -11,5 +10,7 @@ namespace dinero.Models
         public const string PostTransactions = "https://dinero.azurewebsites.net/api/v1/payments/transactions";
         public const string GetCurrencies = "https://dinero.azurewebsites.net/api/v1/payments/currencies";
         public const string UserSearch = "https://dinero.azurewebsites.net/api/v1/accounts/users";
+        public const string GetPassword = "https://dinero.azurewebsites.net/api/v1/accounts/activate-account";
+        public const string ResendEmail = "https://dinero.azurewebsites.net/api/v1/accounts/resend-email";
     }
 }

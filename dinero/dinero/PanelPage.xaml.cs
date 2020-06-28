@@ -69,5 +69,10 @@ namespace dinero
         {
             GetWalletDetails();
         }
+
+        private async void BtnNewWallet_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new AddWallet());
+        }
     }
 }

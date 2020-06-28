@@ -15,11 +15,11 @@ namespace dinero
 {
     public class WalletView
     {
-        public async Task<string> CreateRequest(Wallet wallet)
+        public async Task<HttpResponseMessage> CreateRequest(Wallet wallet)
         {
             dynamic json = new JObject();
             json.name = wallet.Name;
-            json.currency = wallet.Currency;
+            json.currency = wallet.Currency.Code;
             json.balance = wallet.Balance;
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
             var clientHandler = new HttpClientHandler();
@@ -27,10 +27,14 @@ namespace dinero
             {
                 return true;
             };
+
             var httpClient = new HttpClient(clientHandler);
+
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Application.Current.Properties["header"].ToString());
             var response = await httpClient.PostAsync(new Uri(ServerUrls.Wallets), content);
 
-            return await response.Content.ReadAsStringAsync();
+            return response;
         }
 
         public async Task<List<Wallet>> GetRequest()

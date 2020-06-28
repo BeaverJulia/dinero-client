@@ -50,6 +50,7 @@
 
             </Frame>
             <Button x:Name="btnNewTransaction" Text="New Transaction"/>
+            <Button x:Name="btnNewWallet" Text="New Wallet" Clicked="BtnNewWallet_OnClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
