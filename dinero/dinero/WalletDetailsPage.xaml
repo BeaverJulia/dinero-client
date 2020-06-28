@@ -8,9 +8,10 @@
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="Id" Text="{Binding Id}" />
-            <Label x:Name="Name" Text="{Binding Name}" />
             <Label x:Name="Currency" Text="{Binding Currency.Name}" />
-            <Label x:Name="Balance" Text="{Binding Balance}" />
+            <Entry x:Name="Name" Text="{Binding Name}" />
+            <Entry x:Name="Balance" Text="{Binding Balance}" />
+            <Button Clicked="Button_OnClicked" Text="Save"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
