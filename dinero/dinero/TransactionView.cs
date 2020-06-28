@@ -33,7 +33,7 @@ namespace dinero
         public async Task<HttpResponseMessage> CreateRequest(Transaction transaction)
         {
             dynamic json = new JObject();
-            json.to_user = 4;
+            json.to_user = transaction.To_User.Id;
             json.currency = transaction.Currency.Code;
             json.amount = transaction.Amount;
             var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");

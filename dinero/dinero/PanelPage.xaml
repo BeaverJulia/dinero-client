@@ -35,7 +35,7 @@
                             <ViewCell>
                                 <StackLayout Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding To_User}"  />
+                                        <Label Text="{Binding Name}"  />
                                         <Label Text="{Binding Amount}" />
                                         <Label Text="{Binding Paid_At}" />
                                     </StackLayout>

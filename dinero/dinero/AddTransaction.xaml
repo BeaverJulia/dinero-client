@@ -13,7 +13,7 @@
 
                     <Label>Create Transaction</Label>
                     <Label>To whom?</Label>
-                    <!--<SearchBar x:Name="UserSearch" SearchButtonPressed="UserSearch_OnSearchButtonPressed" />
+                    <SearchBar x:Name="UserSearch" SearchButtonPressed="UserSearch_OnSearchButtonPressed" />
                     <ListView x:Name="SuggestedUsers">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -25,14 +25,15 @@
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>-->
+                    </ListView>
                     <Label>How much?</Label>
                     <Entry x:Name="txtAmount" Text="100" />
-                    <Picker x:Name="blaPicker" Title="Select"
-                            ItemsSource="{Binding CurrenciesList}"
-                            ItemDisplayBinding="{Binding name}"
-                            SelectedItem="{Binding SelectedCurrency}" />
-                    
+                    <StackLayout>
+                        <Picker x:Name="blaPicker" Title="Select"
+                                ItemsSource="{Binding CurrenciesList}"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedCurrency}" />
+                    </StackLayout>
                     <Button x:Name="btnSend" Text="Send money" />
                 </StackLayout>
             </Frame>

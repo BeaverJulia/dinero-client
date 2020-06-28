@@ -28,7 +28,7 @@ namespace dinero
             Transactions.ItemsSource = GetTransactions();
             Wallets.ItemsSource = WalletsList;
             btnNewTransaction.Clicked += BtnNewTransaction_Clicked;
-            BindingContext = new WalletDetailsPage();
+            
         }
 
         private async void BtnNewTransaction_Clicked(object sender, EventArgs e)
@@ -53,6 +53,13 @@ namespace dinero
                 transaction.Paid_At = dateTime.DateTime.ToLongDateString();
             }
             return transactions;
+        }
+
+        public async void GetDetails()
+        {
+
+            var walletDetail = (Wallet) Wallets.SelectedItem;
+            await Navigation.PushModalAsync(new WalletDetailsPage(walletDetail));
         }
       
         }

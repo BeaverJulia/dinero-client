@@ -28,20 +28,20 @@ namespace dinero
         {
             Transactionview = new TransactionView();
             var transaction = new Transaction();
-            var user = new User();
+            var user = (User)SuggestedUsers.SelectedItem;
             transaction.Amount = float.Parse(txtAmount.Text,
                 CultureInfo.InvariantCulture);
             var currency = new Currency();
             currency = (Currency)blaPicker.SelectedItem;
             transaction.Currency = currency;
-            
+            transaction.To_User = user;
             if (transaction.Amount < 0)
             {
                 await DisplayAlert("Validation errors", "Please provide correct Amount", "Ok");
                 return;
             }
 
-            if (string.IsNullOrEmpty(user.Name))
+            if (string.IsNullOrEmpty(SuggestedUsers.SelectedItem.ToString()))
             {
                 await DisplayAlert("Validation errors", "The User Name is required", "Ok");
                 return;
@@ -54,6 +54,7 @@ namespace dinero
             {
                 
                 await DisplayAlert("Transaction completed", "Transaction completed", "Ok");
+                await Navigation.PushAsync(new PanelPage());
             }
             else
             {
@@ -72,10 +73,10 @@ namespace dinero
 
         private void UserSearch_OnSearchButtonPressed(object sender, EventArgs e)
         {
-            /*AccountView = new AccountView();
+            AccountView = new AccountView();
             var keyword = UserSearch.Text;
             var users = AccountView.UserSearch(keyword, "5").Result;
-            SuggestedUsers.ItemsSource= users;*/
+            SuggestedUsers.ItemsSource= users;
         }
         
     }
