@@ -11,7 +11,7 @@
             <Label StyleClass="pageTitle">Dashboard</Label>
             <Frame StyleClass="walletItem">
                 <ListView x:Name="Wallets"
-                          ItemTapped="Tapped">
+                          ItemSelected="Wallets_OnItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
