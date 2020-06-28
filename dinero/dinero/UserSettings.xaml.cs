@@ -30,10 +30,15 @@ namespace dinero
             userRequest.Password = password.Text;
             var result = await AccountView.PatchAsync(userRequest);
             var output = await result.Content.ReadAsStringAsync();
+            if (string.IsNullOrEmpty(userRequest.Password))
+            {
+                await DisplayAlert("Password empty", "To change settings please provide password", "Ok");
+                return;
+            }
             if (result.IsSuccessStatusCode)
             {
                 var response = JsonConvert.DeserializeObject<ResultMessage>(output);
-                await DisplayAlert("Wallet edited", response.Message, "Ok");
+                await DisplayAlert("Info edited", "User Info changed", "Ok");
                 await Navigation.PushModalAsync(new UserSettings());
             }
             else
@@ -42,11 +47,11 @@ namespace dinero
                 try
                 {
                     var response = JsonConvert.DeserializeObject<ResultMessage>(output);
-                    await DisplayAlert("Validation errors", response.Message, "Ok");
+                    await DisplayAlert("Error", response.Message, "Ok");
                 }
                 catch
                 {
-                    await DisplayAlert("Validation errors", result.StatusCode.ToString(), "Ok");
+                    await DisplayAlert("Error", result.StatusCode.ToString(), "Ok");
 
                 }
             }

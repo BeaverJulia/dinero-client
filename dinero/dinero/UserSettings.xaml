@@ -10,7 +10,7 @@
             <Label x:Name="Id" Text="{Binding Id}" />
             <Entry x:Name="Name" Text="{Binding Name}" />
             <Entry x:Name="Email" Text="{Binding Email}" />
-            <Entry x:Name="password" Text="{Binding password}" IsPassword="True" />
+            <Entry x:Name="password" Text="{Binding password}" IsPassword="True" Placeholder="Please provide Password" />
             <Button Clicked="Button_OnClicked" Text="Save"/>
         </StackLayout>
     </ContentPage.Content>

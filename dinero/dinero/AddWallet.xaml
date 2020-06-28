@@ -11,9 +11,9 @@
                 <StackLayout>
                     <Label>Create Wallet</Label>
                     <Label>Name</Label>
-                    <Entry x:Name="txtName" Text="100" />
+                    <Entry x:Name="txtName"  Placeholder="Enter Name" />
                     <Label>Balance</Label>
-                    <Entry x:Name="txtBalance" Text="100" />
+                    <Entry x:Name="txtBalance" Placeholder="Enter Balance"/>
                     <StackLayout>
                         <Picker x:Name="blaPicker" Title="Select"
                                 ItemsSource="{Binding CurrenciesList}"
