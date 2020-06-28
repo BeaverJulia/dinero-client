@@ -8,9 +8,12 @@
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="Id" Text="{Binding Id}" />
-            <Label x:Name="Name" Text="{Binding Status}" />
+            <Label x:Name="Status" Text="{Binding Status}" />
+            <Label x:Name="From_User" Text="{Binding From_User.Name}" />
+            <Label x:Name="To_User" Text="{Binding To_User.Name}" />
+            <Label x:Name="Amount" Text="{Binding Amount}" />
             <Label x:Name="Currency" Text="{Binding Currency.Name}" />
-            <Label x:Name="Balance" Text="{Binding Balance}" />
+            <Label x:Name="Paid_at" Text="{Binding Paid_At}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

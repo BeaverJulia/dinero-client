@@ -65,7 +65,7 @@ namespace dinero
         public async void GetTransactionDetails()
         {
             var transactionDetail = (Transaction) Transactions.SelectedItem;
-            await Navigation.PushAsync(new TransactionDetails(transactionDetail));
+            await Navigation.PushModalAsync(new TransactionDetails(transactionDetail));
         }
         private void Tapped(object sender, ItemTappedEventArgs e)
         {
