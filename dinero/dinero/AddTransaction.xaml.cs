@@ -15,6 +15,7 @@ namespace dinero
     {
         public TransactionView Transactionview;
         public AccountView AccountView;
+
         public AddTransaction()
         {
             InitializeComponent();
@@ -71,17 +72,11 @@ namespace dinero
 
         private void UserSearch_OnSearchButtonPressed(object sender, EventArgs e)
         {
-            AccountView = new AccountView();
+            /*AccountView = new AccountView();
             var keyword = UserSearch.Text;
-            var response = Search(keyword).Result;
-            var users = JsonConvert.DeserializeObject<GenericOutput<User>>(response);
-            SuggestedUsers.ItemsSource= users.Results;
+            var users = AccountView.UserSearch(keyword, "5").Result;
+            SuggestedUsers.ItemsSource= users;*/
         }
-        private async Task<string> Search (string key)
-        {
-            var output = await AccountView.UserSearch(key, "5");
-            var response = await output.Content.ReadAsStringAsync();
-            return response;
-        }
+        
     }
 }

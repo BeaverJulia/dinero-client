@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using dinero.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xamarin.Forms;
 
@@ -48,7 +50,7 @@ namespace dinero
             return response;
         }
 
-        public async Task<HttpResponseMessage> UserSearch(string user, string limit)
+        public async Task<List<User>> UserSearch(string user, string limit)
         {
             var query = "?limit=" + limit + "&search=" + user;
             var clientHandler = new HttpClientHandler();
@@ -63,8 +65,10 @@ namespace dinero
                 new AuthenticationHeaderValue("Bearer", Application.Current.Properties["header"].ToString());
 
             var uri = new Uri(ServerUrls.UserSearch + query);
-            var output = await httpClient.GetAsync(uri);
-            return output;
+            var output = await httpClient.GetAsync(uri).ConfigureAwait(false);
+            var response = output.Content.ReadAsStringAsync().Result;
+            var users = JsonConvert.DeserializeObject<GenericOutput<User>>(response);
+            return users.Results;
         }
     }
 }

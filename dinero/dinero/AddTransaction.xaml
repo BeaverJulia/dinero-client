@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -9,18 +10,30 @@
         <StackLayout>
             <Frame StyleClass="loginInputs">
                 <StackLayout>
-                
-                        <Label>Create Transaction</Label>
-                        <Label>To whom?</Label>
-                    <SearchBar x:Name="UserSearch" SearchButtonPressed="UserSearch_OnSearchButtonPressed"/>
-                        <ListView x:Name="SuggestedUsers"/>
-                        <Label>How much?</Label>
-                        <Entry x:Name="txtAmount" Text="100"/>
-                        <Picker x:Name="blaPicker"  Title="Select"
-                                ItemsSource="{Binding CurrenciesList}"
-                                ItemDisplayBinding="{Binding name }"
-                                SelectedItem="{Binding SelectedCurrency}"/>
-                        <Button x:Name="btnSend" Text="Send money"/>
+
+                    <Label>Create Transaction</Label>
+                    <Label>To whom?</Label>
+                    <!--<SearchBar x:Name="UserSearch" SearchButtonPressed="UserSearch_OnSearchButtonPressed" />
+                    <ListView x:Name="SuggestedUsers">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" />
+                                        <Label Text="{Binding Id}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>-->
+                    <Label>How much?</Label>
+                    <Entry x:Name="txtAmount" Text="100" />
+                    <Picker x:Name="blaPicker" Title="Select"
+                            ItemsSource="{Binding CurrenciesList}"
+                            ItemDisplayBinding="{Binding name}"
+                            SelectedItem="{Binding SelectedCurrency}" />
+                    
+                    <Button x:Name="btnSend" Text="Send money" />
                 </StackLayout>
             </Frame>
         </StackLayout>
