@@ -98,5 +98,48 @@ namespace dinero
             var output = await httpClient.PostAsync(new Uri(ServerUrls.ResendEmail), content);
             return output;
         }
+        public async Task<HttpResponseMessage> PatchAsync(UserRegister user)
+        {
+            dynamic json = new JObject();
+            json.name = user?.Name;
+            json.email = user?.Email;
+            json.password = user?.Password;
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
+            clientHandler.SslProtocols = SslProtocols.Ssl3;
+            var httpClient = new HttpClient(clientHandler);
+
+
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Application.Current.Properties["header"].ToString());
+            var uri = new Uri(ServerUrls.LoggedUser);
+            var request = await httpClient.PatchAsync(uri, content);
+            return request;
+        }
+        public async Task<UserRegister> GetUserInfo()
+        {
+        
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
+            clientHandler.SslProtocols = SslProtocols.Ssl3;
+
+            var httpClient = new HttpClient(clientHandler);
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Application.Current.Properties["header"].ToString());
+
+            var uri = new Uri(ServerUrls.LoggedUser);
+            var output = await httpClient.GetAsync(uri).ConfigureAwait(false);
+            var response = output.Content.ReadAsStringAsync().Result;
+            var user = JsonConvert.DeserializeObject<UserRegister>(response);
+            return user;
+        }
     }
 }

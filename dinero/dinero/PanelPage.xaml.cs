@@ -74,5 +74,10 @@ namespace dinero
         {
             await Navigation.PushModalAsync(new AddWallet());
         }
+
+        private async void BtnUserSettings_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new UserSettings());
+        }
     }
 }

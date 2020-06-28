@@ -9,6 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label StyleClass="pageTitle">Dashboard</Label>
+            <Button x:Name="btnUserSettings" Text="User Settings" Clicked="BtnUserSettings_OnClicked"/>
             <Frame StyleClass="walletItem">
                 <ListView x:Name="Wallets"
                           ItemSelected="Wallets_OnItemSelected">
