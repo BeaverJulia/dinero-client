@@ -55,12 +55,27 @@ namespace dinero
             return transactions;
         }
 
-        public async void GetDetails()
+        public async void GetWalletDetails()
         {
-
-            var walletDetail = (Wallet) Wallets.SelectedItem;
+            var walletDetail = (Wallet)Wallets.SelectedItem;
             await Navigation.PushModalAsync(new WalletDetailsPage(walletDetail));
+
         }
-      
+
+        public async void GetTransactionDetails()
+        {
+            var transactionDetail = (Transaction) Transactions.SelectedItem;
+            await Navigation.PushAsync(new TransactionDetails(transactionDetail));
         }
+        private void Tapped(object sender, ItemTappedEventArgs e)
+        {
+            GetWalletDetails();
+        }
+
+        private void Transactions_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            GetTransactionDetails();
+        }
+
+    }
     }

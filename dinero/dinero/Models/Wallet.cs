@@ -2,7 +2,7 @@
 {
     public class Wallet
     {
-        public string Id { get; }
+        public int Id { get; }
         public string Name { get; set; }
         public Currency Currency { get; set; }
         public string Balance { get; set; }

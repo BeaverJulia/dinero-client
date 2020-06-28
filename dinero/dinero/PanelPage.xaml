@@ -10,17 +10,18 @@
         <StackLayout>
             <Label StyleClass="pageTitle">Dashboard</Label>
             <Frame StyleClass="walletItem">
-                <ListView x:Name="Wallets">
+                <ListView x:Name="Wallets"
+                          ItemTapped="Tapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            
                             <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding Balance}" />
-                                        <Button  x:Name="btnDetails" Text="Details"  Command="{Binding OkCommand_Execute}" CommandParameter="{Binding Wallet}"
-                                        />
-                                    </StackLayout>
+                                    <Label Text="{Binding Balance}"/> 
+
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -29,13 +30,14 @@
                
             </Frame>
             <Frame StyleClass="walletItem">
-                <ListView x:Name="Transactions">
+                <ListView x:Name="Transactions"
+                          ItemSelected="Transactions_OnItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Name}"  />
+                                        <Label Text="{Binding From_User.Name}"  />
                                         <Label Text="{Binding Amount}" />
                                         <Label Text="{Binding Paid_At}" />
                                     </StackLayout>

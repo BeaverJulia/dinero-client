@@ -18,7 +18,7 @@ namespace dinero
         public WalletDetailsPage(Wallet wallet)
         {
             InitializeComponent();
-
+            BindingContext = wallet;
         }
 
        

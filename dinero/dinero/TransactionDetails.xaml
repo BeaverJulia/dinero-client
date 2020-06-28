@@ -4,11 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="dinero.WalletDetailsPage">
+             x:Class="dinero.TransactionDetails">
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="Id" Text="{Binding Id}" />
-            <Label x:Name="Name" Text="{Binding Name}" />
+            <Label x:Name="Name" Text="{Binding Status}" />
             <Label x:Name="Currency" Text="{Binding Currency.Name}" />
             <Label x:Name="Balance" Text="{Binding Balance}" />
         </StackLayout>
