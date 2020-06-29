@@ -22,8 +22,8 @@
             <Frame StyleClass="accountPassword">
                 <StackLayout>
                     <Entry x:Name="OldPassword" Text="{Binding OldPassword}" IsPassword="True" Placeholder="Your current password"/>
-                    <Entry x:Name="NewPassword" Text="{Binding NewPassword}" IsPassword="True" Placeholder="Your new password"/>
-                    <Button Clicked="Button_OnClicked" Text="Update Password" />
+                    <Entry x:Name="NewPassword" Text="{Binding NewPassword}" IsPassword="True" Placeholder="New password"/>
+                    <Button Clicked="ChangePasswordBtn_Clicked" Text="Update Password" />
                 </StackLayout>
             </Frame>
             <Button StyleClass="accountLogoutBtn" Text="Logout" />

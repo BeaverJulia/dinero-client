@@ -30,16 +30,45 @@ namespace dinero
             userRequest.Password = password.Text;
             var result = await AccountView.PatchAsync(userRequest);
             var output = await result.Content.ReadAsStringAsync();
-            if (string.IsNullOrEmpty(userRequest.Password))
-            {
-                await DisplayAlert("Password empty", "To change settings please provide password", "Ok");
-                return;
-            }
+            // if (string.IsNullOrEmpty(userRequest.Password))
+            // {
+            //     await DisplayAlert("Password empty", "To change settings please provide password", "Ok");
+            //     return;
+            // }
             if (result.IsSuccessStatusCode)
             {
                 var response = JsonConvert.DeserializeObject<ResultMessage>(output);
                 await DisplayAlert("Info edited", "User Info changed", "Ok");
                 await Navigation.PushModalAsync(new UserSettings());
+            }
+            else
+            {
+                //TODO - change this validation
+                try
+                {
+                    var response = JsonConvert.DeserializeObject<ResultMessage>(output);
+                    await DisplayAlert("Error", response.Message, "Ok");
+                }
+                catch
+                {
+                    await DisplayAlert("Error", result.StatusCode.ToString(), "Ok");
+
+                }
+            }
+        }
+        private async void ChangePasswordBtn_Clicked(object sender, EventArgs e)
+        {
+            var changePasswordRequest = new ChangePassword();
+            changePasswordRequest.OldPassword = OldPassword?.Text;
+            changePasswordRequest.NewPassword = NewPassword?.Text;
+            
+            var result = await AccountView.PasswordChangeRequest(changePasswordRequest);
+            var output = await result.Content.ReadAsStringAsync();
+            if (result.IsSuccessStatusCode)
+            {
+                var response = JsonConvert.DeserializeObject<ResultMessage>(output);
+                await DisplayAlert("Password changed", "User password changed", "Ok");
+                // await Navigation.PushModalAsync(new UserSettings());
             }
             else
             {
