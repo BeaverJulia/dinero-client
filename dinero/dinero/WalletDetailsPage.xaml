@@ -31,7 +31,7 @@
 
             </Frame>
             <Button x:Name="btnNewTransaction" Text="New Transaction" Clicked="BtnNewTransaction_OnClicked"/>
-            <Button x:Name="btnPopUp" Text="New Transaction" Clicked="BtnPopUp_OnClicked"/>
+            <Button x:Name="btnPopUp" Text="Pop Up" Clicked="BtnPopUp_OnClicked"/>
         </StackLayout>
 
     </ContentPage.Content>
