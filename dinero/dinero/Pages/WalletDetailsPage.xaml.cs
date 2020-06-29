@@ -57,9 +57,9 @@ namespace dinero
             await Navigation.PushModalAsync(new AddTransaction(SelectedWallet));
         }
 
-        private void BtnPopUp_OnClicked(object sender, EventArgs e)
+        private async void BtnPopUp_OnClicked(object sender, EventArgs e)
         {
-         
+            await Navigation.PushModalAsync(new PopUpPage(SelectedWallet));
         }
     }
 }

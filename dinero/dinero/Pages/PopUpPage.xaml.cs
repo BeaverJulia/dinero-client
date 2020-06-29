@@ -25,7 +25,7 @@ namespace dinero
             var walletView = new WalletView();
             float balance = float.Parse(SelectedWallet.Balance);
             balance += float.Parse(Balance?.Text);
-            SelectedWallet.Balance = Balance?.Text;
+            SelectedWallet.Balance = balance.ToString();
             var result = await walletView.PatchAsync(SelectedWallet);
             var output = await result.Content.ReadAsStringAsync();
             if (result.IsSuccessStatusCode)

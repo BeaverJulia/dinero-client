@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Entry x:Name="Balance" Text="{Binding Balance}" />
-            <Button x:Name="btnPopUp" Text="New Transaction" Clicked="BtnPopUp_OnClicked"/>
+            <Button x:Name="btnPopUp" Text="Top Up" Clicked="BtnPopUp_OnClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
