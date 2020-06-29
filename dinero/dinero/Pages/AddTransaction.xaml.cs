@@ -54,7 +54,7 @@ namespace dinero
             {
                 
                 await DisplayAlert("Transaction completed", "Transaction completed", "Ok");
-                await Navigation.PushModalAsync(new PanelPage());
+                await Navigation.PushModalAsync(new MainPage());
             }
             else
             {

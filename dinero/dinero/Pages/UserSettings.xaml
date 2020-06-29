@@ -14,8 +14,6 @@
                     <Label x:Name="Id" Text="{Binding Id}" />
                     <Entry x:Name="Name" Text="{Binding Name}" />
                     <Entry x:Name="Email" Text="{Binding Email}" />
-                    <Entry x:Name="password" Text="{Binding password}" IsPassword="True"
-                           Placeholder="Please provide Password" />
                     <Button Clicked="Button_OnClicked" Text="Save" />
                 </StackLayout>
             </Frame>
@@ -26,7 +24,7 @@
                     <Button Clicked="ChangePasswordBtn_Clicked" Text="Update Password" />
                 </StackLayout>
             </Frame>
-            <Button StyleClass="accountLogoutBtn" Text="Logout" />
+            <Button StyleClass="accountLogoutBtn" Text="Logout" Clicked="LogoutBtn_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

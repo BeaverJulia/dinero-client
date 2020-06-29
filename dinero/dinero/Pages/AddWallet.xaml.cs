@@ -47,7 +47,7 @@ namespace dinero
            {
 
                await DisplayAlert("Wallet Created", "Wallet " +wallet.Name+ " created", "Ok");
-               await Navigation.PushModalAsync(new PanelPage());
+               await Navigation.PushModalAsync(new MainPage());
            }
            else
            {

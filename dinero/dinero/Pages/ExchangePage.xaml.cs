@@ -62,7 +62,7 @@ namespace dinero
             {
                 var exchange = rate.FirstOrDefault();
                 var calculate = exchange.amount * amount;
-               bool answer= await DisplayAlert("Proceed", "Exchange rate for "+exchange.from_currency.Code+" to "+exchange.to_currency.Code+" is "+exchange.amount.ToString()+". Your money will be exchanged to "+calculate.ToString(), "Proceed", "Ok");
+               bool answer= await DisplayAlert("Proceed", "Exchange rate for "+exchange.from_currency.Code+" to "+exchange.to_currency.Code+" is "+exchange.amount.ToString()+". Your money will be exchanged to "+calculate.ToString(), "Proceed", "Cancel");
               
                if (answer){Exchange();}
                return;
@@ -103,7 +103,7 @@ namespace dinero
             if (result.IsSuccessStatusCode)
             {
                 await DisplayAlert("Exchange completed", "Money Exchanged Successfully", "Ok");
-                await Navigation.PushModalAsync(new PanelPage());
+                await Navigation.PushModalAsync(new MainPage());
             }
             else
             {

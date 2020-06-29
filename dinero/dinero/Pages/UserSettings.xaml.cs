@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using dinero.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -27,23 +23,16 @@ namespace dinero
             var userRequest = new UserRegister();
             userRequest.Name = Name?.Text;
             userRequest.Email = Email?.Text;
-            userRequest.Password = password.Text;
+            userRequest.Password = "not_null_field2";
             var result = await AccountView.PatchAsync(userRequest);
             var output = await result.Content.ReadAsStringAsync();
-            // if (string.IsNullOrEmpty(userRequest.Password))
-            // {
-            //     await DisplayAlert("Password empty", "To change settings please provide password", "Ok");
-            //     return;
-            // }
             if (result.IsSuccessStatusCode)
             {
-                var response = JsonConvert.DeserializeObject<ResultMessage>(output);
                 await DisplayAlert("Info edited", "User Info changed", "Ok");
-                await Navigation.PushModalAsync(new UserSettings());
+                await Navigation.PushModalAsync(new MainPage());
             }
             else
             {
-                //TODO - change this validation
                 try
                 {
                     var response = JsonConvert.DeserializeObject<ResultMessage>(output);
@@ -66,13 +55,10 @@ namespace dinero
             var output = await result.Content.ReadAsStringAsync();
             if (result.IsSuccessStatusCode)
             {
-                var response = JsonConvert.DeserializeObject<ResultMessage>(output);
                 await DisplayAlert("Password changed", "User password changed", "Ok");
-                // await Navigation.PushModalAsync(new UserSettings());
             }
             else
             {
-                //TODO - change this validation
                 try
                 {
                     var response = JsonConvert.DeserializeObject<ResultMessage>(output);
@@ -86,5 +72,9 @@ namespace dinero
             }
         }
 
+        private void LogoutBtn_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new LoginPage());
+        }
     }
 }
