@@ -19,15 +19,10 @@ namespace dinero
             InitializeComponent();
             WalletsList = new List<Wallet>();
             WalletsList = GetWallets();
-            Transactions.ItemsSource = GetTransactions();
             Wallets.ItemsSource = WalletsList;
-            btnNewTransaction.Clicked += BtnNewTransaction_Clicked;
+         
         }
 
-        private async void BtnNewTransaction_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new AddTransaction());
-        }
 
         public List<Wallet> GetWallets()
         {
@@ -35,18 +30,6 @@ namespace dinero
             return _walletView.GetRequest().Result;
         }
 
-        public List<Transaction> GetTransactions()
-        {
-            _transactionView = new TransactionView();
-            var transactions = _transactionView.GetRequests(10).Result;
-            foreach (var transaction in transactions)
-            {
-                var dateTime = DateTimeOffset.Parse(transaction.Paid_At, CultureInfo.InvariantCulture);
-                transaction.Paid_At = dateTime.DateTime.ToLongDateString();
-            }
-
-            return transactions;
-        }
 
         public async void GetWalletDetails()
         {
@@ -54,16 +37,6 @@ namespace dinero
             await Navigation.PushModalAsync(new WalletDetailsPage(walletDetail));
         }
 
-        public async void GetTransactionDetails()
-        {
-            var transactionDetail = (Transaction) Transactions.SelectedItem;
-            await Navigation.PushModalAsync(new TransactionDetails(transactionDetail));
-        }
-
-        private void Transactions_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            GetTransactionDetails();
-        }
 
         private void Wallets_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -84,5 +57,7 @@ namespace dinero
         {
             await Navigation.PushModalAsync(new CurrencyPanelPage());
         }
+
+      
     }
 }
