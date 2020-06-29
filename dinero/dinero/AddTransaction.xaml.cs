@@ -21,11 +21,8 @@ namespace dinero
         {
             InitializeComponent();
             SelectedWallet = wallet;
-            BindingContext = new PickerMVVMViewModel();
             btnSend.Clicked += BtnSend_Clicked;
-            TxtWalletName.Text = wallet.Name
-
-                ;
+            TxtWalletName.Text = wallet.Name;
         }
 
         private async void BtnSend_Clicked(object sender, EventArgs e)
@@ -35,8 +32,7 @@ namespace dinero
             var user = (User)SuggestedUsers.SelectedItem;
             transaction.Amount = float.Parse(txtAmount.Text,
                 CultureInfo.InvariantCulture);
-            /*var currency = new Currency();
-            currency = (Currency)blaPicker.SelectedItem;*/
+           
             transaction.Currency = SelectedWallet.Currency;
             transaction.To_User = user;
             if (transaction.Amount < 0)

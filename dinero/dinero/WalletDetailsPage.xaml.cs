@@ -28,8 +28,6 @@ namespace dinero
         }
 
 
-        
-
         private void Transactions_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             GetTransactionDetails();

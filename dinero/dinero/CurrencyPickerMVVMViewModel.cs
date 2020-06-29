@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 using dinero.Models;
 
 namespace dinero
 {
-    public class PickerMVVMViewModel : INotifyPropertyChanged
+    public class CurrencyPickerMVVMViewModel : INotifyPropertyChanged
     {
-        public PickerMVVMViewModel()
+        public CurrencyPickerMVVMViewModel()
         {
             CurrenciesList = new List<Currency>();
             CurrenciesView = new CurrenciesView();

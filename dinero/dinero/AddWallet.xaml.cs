@@ -17,7 +17,7 @@ namespace dinero
         public AddWallet()
         {
             InitializeComponent();
-            BindingContext = new PickerMVVMViewModel();
+            BindingContext = new CurrencyPickerMVVMViewModel();
         }
 
         private async void BtnCreate_OnClicked(object sender, EventArgs e)

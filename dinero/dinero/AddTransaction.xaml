@@ -29,12 +29,7 @@
                     </ListView>
                     <Label>How much?</Label>
                     <Entry x:Name="txtAmount" Placeholder="Enter Amount" />
-                    <!-- <StackLayout>
-                        <Picker x:Name="blaPicker" Title="Select"
-                                ItemsSource="{Binding CurrenciesList}"
-                                ItemDisplayBinding="{Binding Name}"
-                                SelectedItem="{Binding SelectedCurrency}" />
-                    </StackLayout>-->
+                  
                     <Button x:Name="btnSend" Text="Send money" />
                 </StackLayout>
             </Frame>

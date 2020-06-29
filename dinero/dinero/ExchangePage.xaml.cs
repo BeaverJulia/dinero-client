@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,19 @@ using Xamarin.Forms.Xaml;
 namespace dinero
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ExchangePage : ContentPage
+    public partial class ExchangePage : INotifyPropertyChanged
     {
-        public List<Wallet> WalletsList;
+        public List<Wallet> WalletsFromList;
+        public List<Wallet> WalletsToList;
         private WalletView _walletView;
         private CurrenciesView _currenciesView;
         public ExchangePage()
         {
             InitializeComponent();
-            WalletsList = GetWallets();
+            WalletsFromList = GetWallets();
+            WalletsToList = GetToWallets();
+            BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
+            
         }
         public List<Wallet> GetWallets()
         {
@@ -28,26 +33,22 @@ namespace dinero
             return _walletView.GetRequest().Result;
         }
 
-        private void WalletFromSearch_OnSearchButtonPressed(object sender, EventArgs e)
+        public List<Wallet> GetToWallets()
         {
-            var keyword = WalletFromSearch.Text;
-            var wallets = WalletsList.Where(x => x.Name.ToLower().Contains(keyword.ToLower()));
-            WalletFrom.ItemsSource = wallets;
+            WalletsToList= new List<Wallet>();
+            WalletsToList = WalletsFromList;
+            var wallet = new Wallet();
+           wallet = (Wallet)WalletFromPicker.SelectedItem;
+           WalletsToList.Remove(wallet);
+           return WalletsToList;
         }
-
-        private void WalletToSearch_OnSearchButtonPressed(object sender, EventArgs e)
-        {
-            var keyword = WalletToSearch.Text;
-            var wallets = WalletsList.Where(x => x.Name.ToLower().Contains(keyword.ToLower()));
-            WalletTo.ItemsSource = wallets;
-        }
-
+  
         private async void BtnExchange_OnClicked(object sender, EventArgs e)
         {
             _currenciesView=new CurrenciesView();
             var exchange = new Exchange();
-            var walletFrom = (Wallet)WalletFrom.SelectedItem;
-            var walletTo = (Wallet)WalletTo.SelectedItem;
+            var walletFrom = (Wallet)WalletFromPicker.SelectedItem;
+            var walletTo = (Wallet)WalletToPicker.SelectedItem;
             exchange.from_amount = float.Parse(txtAmount.Text,
                 CultureInfo.InvariantCulture);
             exchange.from_wallet = walletFrom.Id;
@@ -58,12 +59,12 @@ namespace dinero
                 return;
             }
 
-            if (string.IsNullOrEmpty(WalletFrom.SelectedItem.ToString()))
+            if (string.IsNullOrEmpty(WalletFromPicker.SelectedItem.ToString()))
             {
                 await DisplayAlert("Validation errors", "The User Name is required", "Ok");
                 return;
             }
-            if (string.IsNullOrEmpty(WalletTo.SelectedItem.ToString()))
+            if (string.IsNullOrEmpty(WalletToPicker.SelectedItem.ToString()))
             {
                 await DisplayAlert("Validation errors", "The User Name is required", "Ok");
                 return;
@@ -93,5 +94,18 @@ namespace dinero
             }
         }
 
+        /*private void WalletFromPicker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            WalletsFromList = GetWallets();
+            WalletsToList = GetToWallets();
+            BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
+        }
+
+        private void WalletToPicker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            WalletsFromList = GetWallets();
+            WalletsToList = GetToWallets();
+            BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
+        }*/
     }
 }

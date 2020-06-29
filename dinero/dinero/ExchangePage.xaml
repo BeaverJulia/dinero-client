@@ -10,33 +10,20 @@
         <StackLayout>
             <Label>Exchange</Label>
             <Label>From</Label>
-            <SearchBar x:Name="WalletFromSearch" SearchButtonPressed="WalletFromSearch_OnSearchButtonPressed" />
-            <ListView x:Name="WalletFrom">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}" />
-                                <Label Text="{Binding Code}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Label>To</Label>
-            <SearchBar x:Name="WalletToSearch" SearchButtonPressed="WalletToSearch_OnSearchButtonPressed" />
-            <ListView x:Name="WalletTo">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}" />
-                                <Label Text="{Binding Code}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <StackLayout>
+                <Picker x:Name="WalletFromPicker" Title="From"
+                        ItemsSource="{Binding WalletsFrom}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedWalletFrom}" 
+                        SelectedIndexChanged="WalletFromPicker_OnSelectedIndexChanged"/>
+            </StackLayout>
+            <StackLayout>
+                <Picker x:Name="WalletToPicker" Title="To"
+                        ItemsSource="{Binding WalletsTo}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding WalletTo}"
+                        SelectedIndexChanged="WalletToPicker_OnSelectedIndexChanged"/>
+            </StackLayout>
             <Label>How much?</Label>
             <Entry x:Name="txtAmount" Placeholder="Enter Amount" />
             <Button x:Name="btnExchange" Text="Exchange Money" Clicked="BtnExchange_OnClicked"/>
