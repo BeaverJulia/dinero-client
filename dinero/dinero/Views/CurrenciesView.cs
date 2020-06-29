@@ -49,5 +49,22 @@ namespace dinero
 
             return response;
         }
+        public async Task<List<ExchangeRate>> GetExchangeRatesRequest()
+        {
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
+            clientHandler.SslProtocols = SslProtocols.Ssl3;
+            var httpClient = new HttpClient(clientHandler);
+
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Application.Current.Properties["header"].ToString());
+            var response = await httpClient.GetAsync(new Uri(ServerUrls.ExchangeRates)).ConfigureAwait(false);
+            var output = response.Content.ReadAsStringAsync().Result;
+            var exchangeRates = JsonConvert.DeserializeObject<List<ExchangeRate>>(output);
+            return exchangeRates;
+        }
     }
 }
