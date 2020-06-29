@@ -13,7 +13,7 @@ namespace dinero
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddTransaction : ContentPage
     {
-        public TransactionView Transactionview;
+        private TransactionView _transactionView;
         public AccountView AccountView;
 
         public AddTransaction()
@@ -26,7 +26,7 @@ namespace dinero
 
         private async void BtnSend_Clicked(object sender, EventArgs e)
         {
-            Transactionview = new TransactionView();
+            _transactionView = new TransactionView();
             var transaction = new Transaction();
             var user = (User)SuggestedUsers.SelectedItem;
             transaction.Amount = float.Parse(txtAmount.Text,
@@ -47,7 +47,7 @@ namespace dinero
                 return;
             }
 
-            var result = await Transactionview.CreateRequest(transaction);
+            var result = await _transactionView.CreateRequest(transaction);
             var output = await result.Content.ReadAsStringAsync();
             
             if (result.IsSuccessStatusCode)

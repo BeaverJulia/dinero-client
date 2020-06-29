@@ -6,17 +6,16 @@
              mc:Ignorable="d"
              x:Class="dinero.CurrencyPanelPage">
     <ContentPage.Content>
+        <StackLayout>
         <Frame StyleClass="walletItem">
-            <ListView x:Name="Currencies"
-                      ItemSelected="Currencies_OnItemSelected_OnItemSelected">
+            <ListView x:Name="Currencies">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding To_User.Name}"  />
-                                    <Label Text="{Binding Amount}" />
-                                    <Label Text="{Binding Paid_At}" />
+                                    <Label Text="{Binding Name}"  />
+                                    <Label Text="{Binding Code}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
@@ -24,5 +23,8 @@
                 </ListView.ItemTemplate>
             </ListView>
 </Frame>
+            <Button x:Name="btnExchange" Text="Exchange Money" Clicked="BtnExchange_OnClicked"/>
+        </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

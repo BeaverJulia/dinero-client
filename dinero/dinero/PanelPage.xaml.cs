@@ -10,9 +10,9 @@ namespace dinero
     [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class PanelPage : ContentPage
     {
-        private TransactionView TransactionView;
+        private TransactionView _transactionView;
         public List<Wallet> WalletsList;
-        private WalletView WalletView;
+        private WalletView _walletView;
 
         public PanelPage()
         {
@@ -31,14 +31,14 @@ namespace dinero
 
         public List<Wallet> GetWallets()
         {
-            WalletView = new WalletView();
-            return WalletView.GetRequest().Result;
+            _walletView = new WalletView();
+            return _walletView.GetRequest().Result;
         }
 
         public List<Transaction> GetTransactions()
         {
-            TransactionView = new TransactionView();
-            var transactions = TransactionView.GetRequests(10).Result;
+            _transactionView = new TransactionView();
+            var transactions = _transactionView.GetRequests(10).Result;
             foreach (var transaction in transactions)
             {
                 var dateTime = DateTimeOffset.Parse(transaction.Paid_At, CultureInfo.InvariantCulture);
@@ -78,6 +78,11 @@ namespace dinero
         private async void BtnUserSettings_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new UserSettings());
+        }
+
+        private async void BtnExchange_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new CurrencyPanelPage());
         }
     }
 }

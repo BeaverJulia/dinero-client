@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="dinero.ExchangePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label>Exchange</Label>
+            <Label>From</Label>
+            <SearchBar x:Name="WalletFromSearch" SearchButtonPressed="WalletFromSearch_OnSearchButtonPressed" />
+            <ListView x:Name="WalletFrom">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Code}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label>To</Label>
+            <SearchBar x:Name="WalletToSearch" SearchButtonPressed="WalletToSearch_OnSearchButtonPressed" />
+            <ListView x:Name="WalletTo">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Code}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label>How much?</Label>
+            <Entry x:Name="txtAmount" Placeholder="Enter Amount" />
+            <Button x:Name="btnExchange" Text="Exchange Money" Clicked="BtnExchange_OnClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
