@@ -51,25 +51,33 @@
 .walletsList {
     padding: 8;
     border-radius: 10;
-    /*background-color: #efeeee;*/
     margin-top: 5;
     margin-bottom: 10;
     color: #325D79;
 }
 
 .walletItem {
-    height: 80;
-}
-
-.walletTitle {
-    font-size: 24;
-    text-align: left;
-    padding: 12;
+    font-size: 18;
 }
 
 .walletBalance {
-    font-size: 26;
-    text-align: right;
+    font-size: 50;
+}
+
+.transactionList {
+    margin-top: 20;
+}
+
+.newTransactionBtn {
+    margin-right: 8;
+}
+
+.topUpBtn {
+    margin-left: 8;
+}
+
+.walletButtons {
+    margin-top: 20;
 }
 
 .accountData {
@@ -96,4 +104,19 @@
     margin-top: 20;
     margin-left: 80;
     margin-right: 80;
+}
+
+.transactionAmount {
+    font-size: 26;
+}
+
+.transactionDetail {
+    font-size: 20;
+    color: #5f84a0;
+}
+
+.transactionTime {
+    font-size: 16;
+    color: #909090;
+    margin-left: 10;
 }

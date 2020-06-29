@@ -7,31 +7,41 @@
              x:Class="dinero.WalletDetailsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="Id" Text="{Binding Id}" />
-            <Label x:Name="Currency" Text="{Binding Currency.Name}" />
-            <Label x:Name="Name" Text="{Binding Name}" />
-            <Label x:Name="Balance" Text="{Binding Balance}" />
-            <Frame StyleClass="walletItem">
+            <!-- <Label x:Name="Id" Text="{Binding Id}" /> -->
+            <Label x:Name="Name" Text="{Binding Name}" FontSize="18"/>
+            <StackLayout Orientation="Horizontal" StyleClass="walletBalance">
+                <Label x:Name="Balance" Text="{Binding Balance}" />
+                <Label x:Name="Currency" Text="{Binding Currency.Code}" />
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" StyleClass="walletButtons">
+                <Button x:Name="btnNewTransaction" Text="New Transaction" Clicked="BtnNewTransaction_OnClicked" StyleClass="newTransactionBtn"/>
+                <Button x:Name="btnPopUp" Text="Top Up" Clicked="BtnPopUp_OnClicked" StyleClass="topUpBtn"/>
+            </StackLayout>
+            
+            <Frame StyleClass="transactionList">
                 <ListView x:Name="Transactions"
-                          ItemSelected="Transactions_OnItemSelected">
+                          ItemSelected="Transactions_OnItemSelected" RowHeight="80">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding To_User.Name}"  />
+                                    <StackLayout Orientation="Horizontal" StyleClass="transactionAmount">
                                         <Label Text="{Binding Amount}" />
-                                        <Label Text="{Binding Paid_At}" />
+                                        <Label Text="{Binding Currency.Code}" />
+                                        <Label Text="{Binding Paid_At}" StyleClass="transactionTime"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" StyleClass="transactionDetail">
+                                        <Label Text="{Binding From_User.Name}"  />
+                                        <Label Text=">" StyleClass="transactionArrow" />
+                                        <Label Text="{Binding To_User.Name}"  />
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
             </Frame>
-            <Button x:Name="btnNewTransaction" Text="New Transaction" Clicked="BtnNewTransaction_OnClicked"/>
-            <Button x:Name="btnPopUp" Text="Pop Up" Clicked="BtnPopUp_OnClicked"/>
         </StackLayout>
 
     </ContentPage.Content>

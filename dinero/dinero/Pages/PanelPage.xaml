@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -11,34 +12,28 @@
     <ContentPage.Content>
         <StackLayout>
             <Label StyleClass="pageTitle">Dashboard</Label>
-            <!-- <Button x:Name="btnUserSettings" Text="User Settings" Clicked="BtnUserSettings_OnClicked"/> -->
             <Frame StyleClass="walletsList">
                 <ListView x:Name="Wallets"
                           ItemSelected="Wallets_OnItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical" StyleClass="walletItem">
-                                <Label Text="{Binding Name}" StyleClass="walletTitle"/>
-                                <StackLayout StyleClass="walletBalance" Orientation="Horizontal">
-                                    <Label Text="{Binding Balance}"/>
-                                    <Label Text="{Binding Currency.Code}"/>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" StyleClass="walletItem">
+                                    
+                                    <Label Text="{Binding Name}"/>
+                                    <!-- <StackLayout StyleClass="walletBalance" Orientation="Horizontal"> -->
+                                    <Label Text="{Binding Balance}" />
+                                    <Label Text="{Binding Currency.Code}" />
+                                    <!-- </StackLayout> -->
                                 </StackLayout>
-                                <!-- <StackLayout Orientation="Horizontal"> -->
-                                <!--     <Image Source="Assets/PNGs/wallet.png"  /> -->
-                                <!--          -->
-                                <!--     <Label Text="{Binding Balance}"/>  -->
-                                <!-- </StackLayout> -->
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-               
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Frame>
 
-            <Button x:Name="btnExchange" Text="Exchange Agent" Clicked="BtnExchange_OnClicked"/>
-            <Button x:Name="btnNewWallet" Text="New Wallet" Clicked="BtnNewWallet_OnClicked"/>
+            <!-- <Button x:Name="btnExchange" Text="Exchange Agent" Clicked="BtnExchange_OnClicked" /> -->
+            <Button x:Name="btnNewWallet" Text="New Wallet" Clicked="BtnNewWallet_OnClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

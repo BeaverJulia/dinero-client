@@ -94,18 +94,18 @@ namespace dinero
             }
         }
 
-        /*private void WalletFromPicker_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            WalletsFromList = GetWallets();
-            WalletsToList = GetToWallets();
-            BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
-        }
+         private void WalletFromPicker_OnSelectedIndexChanged(object sender, EventArgs e)
+         {
+             WalletsFromList = GetWallets();
+             WalletsToList = GetToWallets();
+             BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
+         }
 
-        private void WalletToPicker_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            WalletsFromList = GetWallets();
-            WalletsToList = GetToWallets();
-            BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
-        }*/
+         private void WalletToPicker_OnSelectedIndexChanged(object sender, EventArgs e)
+         {
+             WalletsFromList = GetWallets();
+             WalletsToList = GetToWallets();
+             BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
+         }
     }
 }
