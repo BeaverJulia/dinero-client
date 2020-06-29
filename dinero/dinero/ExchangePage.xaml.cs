@@ -107,5 +107,21 @@ namespace dinero
             WalletsToList = GetToWallets();
             BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
         }*/
+        private void TxtAmount_OnChildAdded(object sender, ElementEventArgs e)
+        {
+        }
+
+        private void TxtAmount_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var header = new StackLayout
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BackgroundColor = Color.White,
+                Children =
+                {
+                    new Label { Text = "Header" }
+                }
+            };
+        }
     }
 }
