@@ -10,8 +10,9 @@
         <StackLayout>
             <Frame StyleClass="loginInputs">
                 <StackLayout>
-
+                    <Label x:Name="TxtWalletName"/>
                     <Label>Create Transaction</Label>
+
                     <Label>To whom?</Label>
                     <SearchBar x:Name="UserSearch" SearchButtonPressed="UserSearch_OnSearchButtonPressed" />
                     <ListView x:Name="SuggestedUsers">
@@ -28,12 +29,12 @@
                     </ListView>
                     <Label>How much?</Label>
                     <Entry x:Name="txtAmount" Placeholder="Enter Amount" />
-                    <StackLayout>
+                    <!-- <StackLayout>
                         <Picker x:Name="blaPicker" Title="Select"
                                 ItemsSource="{Binding CurrenciesList}"
                                 ItemDisplayBinding="{Binding Name}"
                                 SelectedItem="{Binding SelectedCurrency}" />
-                    </StackLayout>
+                    </StackLayout>-->
                     <Button x:Name="btnSend" Text="Send money" />
                 </StackLayout>
             </Frame>

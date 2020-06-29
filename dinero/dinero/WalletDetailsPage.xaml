@@ -12,6 +12,27 @@
             <Entry x:Name="Name" Text="{Binding Name}" />
             <Entry x:Name="Balance" Text="{Binding Balance}" />
             <Button Clicked="Button_OnClicked" Text="Save"></Button>
+            <Frame StyleClass="walletItem">
+                <ListView x:Name="Transactions"
+                          ItemSelected="Transactions_OnItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding To_User.Name}"  />
+                                        <Label Text="{Binding Amount}" />
+                                        <Label Text="{Binding Paid_At}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Frame>
+            <Button x:Name="btnNewTransaction" Text="New Transaction" Clicked="BtnNewTransaction_OnClicked"/>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>
