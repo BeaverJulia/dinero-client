@@ -33,9 +33,8 @@ namespace dinero
             _transactionView = new TransactionView();
             var transaction = new Transaction();
             var user = (User)SuggestedUsers.SelectedItem;
-            var amount = float.Parse(txtAmount.Text,
+            transaction.Amount = float.Parse(txtAmount.Text,
                 CultureInfo.InvariantCulture);
-            transaction.Amount += amount;
             /*var currency = new Currency();
             currency = (Currency)blaPicker.SelectedItem;*/
             transaction.Currency = SelectedWallet.Currency;

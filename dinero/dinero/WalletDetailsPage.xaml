@@ -9,9 +9,8 @@
         <StackLayout>
             <Label x:Name="Id" Text="{Binding Id}" />
             <Label x:Name="Currency" Text="{Binding Currency.Name}" />
-            <Entry x:Name="Name" Text="{Binding Name}" />
-            <Entry x:Name="Balance" Text="{Binding Balance}" />
-            <Button Clicked="Button_OnClicked" Text="Save"></Button>
+            <Label x:Name="Name" Text="{Binding Name}" />
+            <Label x:Name="Balance" Text="{Binding Balance}" />
             <Frame StyleClass="walletItem">
                 <ListView x:Name="Transactions"
                           ItemSelected="Transactions_OnItemSelected">
@@ -32,6 +31,7 @@
 
             </Frame>
             <Button x:Name="btnNewTransaction" Text="New Transaction" Clicked="BtnNewTransaction_OnClicked"/>
+            <Button x:Name="btnPopUp" Text="New Transaction" Clicked="BtnPopUp_OnClicked"/>
         </StackLayout>
 
     </ContentPage.Content>
