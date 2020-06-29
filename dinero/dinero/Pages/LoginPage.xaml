@@ -11,9 +11,9 @@
             <Label StyleClass="appDescription">Dinero is a brand new solution of online banking system that lives in your pocket. It is very intuitive and user friendly - the interface is simple and modern.</Label>
             <StackLayout StyleClass="loginInputs">
                 <Label>Enter your email:</Label>
-                <Entry x:Name="txtLogin" Text="julia@gmail.com" Placeholder="Enter email"/>
+                <Entry x:Name="txtLogin" Placeholder="Enter email"/>
                 <Label>Enter your password:</Label>
-                <Entry x:Name="txtPassword" Text="dupa123456" Placeholder="Enter password" IsPassword="true"/>
+                <Entry x:Name="txtPassword" Placeholder="Enter password" IsPassword="true"/>
                 <Button x:Name="btnLogin" Text="Login"/>
             </StackLayout>
             <Label>New User?</Label>
