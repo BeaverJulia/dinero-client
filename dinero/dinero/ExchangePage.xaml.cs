@@ -74,7 +74,7 @@ namespace dinero
 
             if (result.IsSuccessStatusCode)
             {
-
+             
                 await DisplayAlert("Exchange completed", "Money Exchanged Successfully", "Ok");
                 await Navigation.PushModalAsync(new PanelPage());
             }
