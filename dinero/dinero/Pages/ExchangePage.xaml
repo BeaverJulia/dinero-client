@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:dinero="clr-namespace:dinero;assembly=dinero"
              mc:Ignorable="d"
              x:Class="dinero.ExchangePage"
              Title="Exchange">
@@ -14,19 +15,18 @@
                 <Picker x:Name="WalletFromPicker" Title="From"
                         ItemsSource="{Binding WalletsFrom}"
                         ItemDisplayBinding="{Binding Name}"
-                        SelectedItem="{Binding SelectedWalletFrom}" 
-                        SelectedIndexChanged="WalletFromPicker_OnSelectedIndexChanged"/>
+                        SelectedItem="{Binding SelectedWalletFrom}" />
             </StackLayout>
             <StackLayout>
                 <Picker x:Name="WalletToPicker" Title="To"
                         ItemsSource="{Binding WalletsTo}"
                         ItemDisplayBinding="{Binding Name}"
-                        SelectedItem="{Binding WalletTo}"
-                        SelectedIndexChanged="WalletToPicker_OnSelectedIndexChanged"/>
+                        SelectedItem="{Binding WalletTo}"/>
             </StackLayout>
             <Label>How much?</Label>
-            <Entry x:Name="txtAmount" Placeholder="Enter Amount" />
+            <Entry x:Name="txtAmount" Placeholder="Enter Amount"  />
             <Button x:Name="btnExchange" Text="Exchange Money" Clicked="BtnExchange_OnClicked"/>
+          
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

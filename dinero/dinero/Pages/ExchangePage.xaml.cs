@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using dinero.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -15,18 +12,19 @@ namespace dinero
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExchangePage : INotifyPropertyChanged
     {
+        private CurrenciesView _currenciesView;
+        private WalletView _walletView;
         public List<Wallet> WalletsFromList;
         public List<Wallet> WalletsToList;
-        private WalletView _walletView;
-        private CurrenciesView _currenciesView;
+
         public ExchangePage()
         {
             InitializeComponent();
             WalletsFromList = GetWallets();
             WalletsToList = GetToWallets();
             BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
-            
         }
+
         public List<Wallet> GetWallets()
         {
             _walletView = new WalletView();
@@ -35,20 +33,20 @@ namespace dinero
 
         public List<Wallet> GetToWallets()
         {
-            WalletsToList= new List<Wallet>();
+            WalletsToList = new List<Wallet>();
             WalletsToList = WalletsFromList;
             var wallet = new Wallet();
-           wallet = (Wallet)WalletFromPicker.SelectedItem;
-           WalletsToList.Remove(wallet);
-           return WalletsToList;
+            wallet = (Wallet) WalletFromPicker.SelectedItem;
+            WalletsToList.Remove(wallet);
+            return WalletsToList;
         }
-  
+
         private async void BtnExchange_OnClicked(object sender, EventArgs e)
         {
-            _currenciesView=new CurrenciesView();
+            _currenciesView = new CurrenciesView();
             var exchange = new Exchange();
-            var walletFrom = (Wallet)WalletFromPicker.SelectedItem;
-            var walletTo = (Wallet)WalletToPicker.SelectedItem;
+            var walletFrom = (Wallet) WalletFromPicker.SelectedItem;
+            var walletTo = (Wallet) WalletToPicker.SelectedItem;
             exchange.from_amount = float.Parse(txtAmount.Text,
                 CultureInfo.InvariantCulture);
             exchange.from_wallet = walletFrom.Id;
@@ -64,6 +62,7 @@ namespace dinero
                 await DisplayAlert("Validation errors", "The User Name is required", "Ok");
                 return;
             }
+
             if (string.IsNullOrEmpty(WalletToPicker.SelectedItem.ToString()))
             {
                 await DisplayAlert("Validation errors", "The User Name is required", "Ok");
@@ -75,37 +74,38 @@ namespace dinero
 
             if (result.IsSuccessStatusCode)
             {
-             
                 await DisplayAlert("Exchange completed", "Money Exchanged Successfully", "Ok");
-                await Navigation.PushModalAsync(new PanelPage());
+                await Navigation.PushModalAsync(new MainPage());
             }
             else
             {
                 try
                 {
                     var response = JsonConvert.DeserializeObject<List<Output>>(output);
-                    await DisplayAlert("Something went wrong", response[0].Detail[0].ToString(), "Ok");
+                    await DisplayAlert("Something went wrong", response[0].Detail[0], "Ok");
                 }
                 catch
                 {
                     await DisplayAlert("Something went wrong", output, "Ok");
                 }
-
             }
         }
 
-         private void WalletFromPicker_OnSelectedIndexChanged(object sender, EventArgs e)
-         {
-             WalletsFromList = GetWallets();
-             WalletsToList = GetToWallets();
-             BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
-         }
+        /*private void WalletFromPicker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            WalletsFromList = GetWallets();
+            WalletsToList = GetToWallets();
+            BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
+        }
 
-         private void WalletToPicker_OnSelectedIndexChanged(object sender, EventArgs e)
-         {
-             WalletsFromList = GetWallets();
-             WalletsToList = GetToWallets();
-             BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
-         }
+        private void WalletToPicker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            WalletsFromList = GetWallets();
+            WalletsToList = GetToWallets();
+            BindingContext = new WalletPickerMVVMViewModel(WalletsFromList, WalletsToList);
+        }*/
+        
     }
+
+ 
 }
