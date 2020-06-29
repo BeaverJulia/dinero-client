@@ -98,6 +98,25 @@ namespace dinero
             var output = await httpClient.PostAsync(new Uri(ServerUrls.ResendEmail), content);
             return output;
         }
+        
+        public async Task<HttpResponseMessage> PasswordChangeRequest(ChangePassword data)
+        {
+            dynamic json = new JObject();
+            json.old_password = data.OldPassword;
+            json.new_password = data.NewPassword;
+            var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
+            var clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
+            {
+                return true;
+            };
+            var httpClient = new HttpClient(clientHandler);
+            httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", Application.Current.Properties["header"].ToString());
+            var output = await httpClient.PutAsync(new Uri(ServerUrls.ChangePassword), content);
+            return output;
+        }
+        
         public async Task<HttpResponseMessage> PatchAsync(UserRegister user)
         {
             dynamic json = new JObject();

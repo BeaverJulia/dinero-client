@@ -81,6 +81,9 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\account.svg" />
+    <AndroidResource Include="Resources\drawable\dashboard.svg" />
+    <AndroidResource Include="Resources\drawable\exchange.svg" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />

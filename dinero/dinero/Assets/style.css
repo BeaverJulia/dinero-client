@@ -1,6 +1,7 @@
 ^ContentPage {
     background-color: #fdfdfd;
     padding: 16;
+    font-family: OpenSans, sans-serif;
 }
 
 ^NavigationPage {
@@ -23,7 +24,6 @@
     text-align: center;
     font-size: 20;
     font-style: bold;
-    font-size: 50%
 }
 
 .loginInputs, .registerInputs {
@@ -45,15 +45,55 @@
     border-radius: 10;
     background-color: #ededed;
     margin-top: 5;
-   font-family: OpenSans
     margin-bottom: 5;
 }
-.walletItem {
+
+.walletsList {
     padding: 8;
     border-radius: 10;
-    background-color: #efeeee;
+    /*background-color: #efeeee;*/
     margin-top: 5;
     margin-bottom: 10;
-    font-family: Montserrat;
     color: #325D79;
+}
+
+.walletItem {
+    height: 80;
+}
+
+.walletTitle {
+    font-size: 24;
+    text-align: left;
+    padding: 12;
+}
+
+.walletBalance {
+    font-size: 26;
+    text-align: right;
+}
+
+.accountData {
+    background-color: #ffffff;
+    padding: 12;
+    border-color: #c0d8e7;
+    border-width: 1;
+}
+
+.accountPassword {
+    margin-top: 20;
+    background-color: #ffffff;
+    padding: 12;
+    border-color: #c0d8e7;
+    border-width: 1;
+}
+
+.accountLogoutBtn {
+    background-color: #fdfdfd;
+    color: #325d79;
+    border-color: #325d79;
+    border-width: 1;
+    width: 60;
+    margin-top: 20;
+    margin-left: 80;
+    margin-right: 80;
 }

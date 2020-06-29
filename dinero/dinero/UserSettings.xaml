@@ -1,17 +1,32 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="dinero.UserSettings">
+             x:Class="dinero.UserSettings"
+             Title="Account">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="Id" Text="{Binding Id}" />
-            <Entry x:Name="Name" Text="{Binding Name}" />
-            <Entry x:Name="Email" Text="{Binding Email}" />
-            <Entry x:Name="password" Text="{Binding password}" IsPassword="True" Placeholder="Please provide Password" />
-            <Button Clicked="Button_OnClicked" Text="Save"/>
+            <Frame StyleClass="accountData">
+                <StackLayout>
+                    <Label x:Name="Id" Text="{Binding Id}" />
+                    <Entry x:Name="Name" Text="{Binding Name}" />
+                    <Entry x:Name="Email" Text="{Binding Email}" />
+                    <Entry x:Name="password" Text="{Binding password}" IsPassword="True"
+                           Placeholder="Please provide Password" />
+                    <Button Clicked="Button_OnClicked" Text="Save" />
+                </StackLayout>
+            </Frame>
+            <Frame StyleClass="accountPassword">
+                <StackLayout>
+                    <Entry x:Name="OldPassword" Text="{Binding OldPassword}" IsPassword="True" Placeholder="Your current password"/>
+                    <Entry x:Name="NewPassword" Text="{Binding NewPassword}" IsPassword="True" Placeholder="New password"/>
+                    <Button Clicked="ChangePasswordBtn_Clicked" Text="Update Password" />
+                </StackLayout>
+            </Frame>
+            <Button StyleClass="accountLogoutBtn" Text="Logout" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
