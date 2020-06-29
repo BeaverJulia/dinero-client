@@ -12,6 +12,7 @@ namespace dinero.Models
         public const string PostTransactions = BaseUrl + "/payments/transactions";
         public const string GetCurrencies = BaseUrl + "/payments/currencies";
         public const string ExchangeCurrencies = BaseUrl + "/payments/exchange-currency";
+        public const string ExchangeRates = BaseUrl + "/payments/exchange-rates";
         public const string UserSearch = BaseUrl + "/accounts/users";
         public const string GetPassword = BaseUrl + "/accounts/activate-account";
         public const string ResendEmail = BaseUrl + "/accounts/resend-email";

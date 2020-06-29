@@ -31,7 +31,7 @@ namespace dinero
             if (result.IsSuccessStatusCode)
             {
                 var response = JsonConvert.DeserializeObject<ResultMessage>(output);
-                await DisplayAlert("Wallet edited", response.Message, "Ok");
+                await DisplayAlert("Balance changed", "Available funds: " + SelectedWallet.Balance, "Ok");
                 await Navigation.PushModalAsync(new WalletDetailsPage(SelectedWallet));
             }
             else
