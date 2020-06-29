@@ -5,25 +5,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:dinero.Models;assembly=dinero"
              mc:Ignorable="d"
-             x:Class="dinero.PanelPage">
+             x:Class="dinero.PanelPage"
+             Title="Dashboard"
+             Icon="dashboard.png">
     <ContentPage.Content>
         <StackLayout>
             <Label StyleClass="pageTitle">Dashboard</Label>
-            <Button x:Name="btnUserSettings" Text="User Settings" Clicked="BtnUserSettings_OnClicked"/>
-            <Frame StyleClass="walletItem">
+            <!-- <Button x:Name="btnUserSettings" Text="User Settings" Clicked="BtnUserSettings_OnClicked"/> -->
+            <Frame StyleClass="walletsList">
                 <ListView x:Name="Wallets"
                           ItemSelected="Wallets_OnItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            
-                            <StackLayout Orientation="Vertical">
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Source="Assets/PNGs/wallet.png"  />
-                                        <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding Balance}"/> 
-
+                            <StackLayout Orientation="Vertical" StyleClass="walletItem">
+                                <Label Text="{Binding Name}" StyleClass="walletTitle"/>
+                                <StackLayout StyleClass="walletBalance" Orientation="Horizontal">
+                                    <Label Text="{Binding Balance}"/>
+                                    <Label Text="{Binding Currency.Code}"/>
                                 </StackLayout>
+                                <!-- <StackLayout Orientation="Horizontal"> -->
+                                <!--     <Image Source="Assets/PNGs/wallet.png"  /> -->
+                                <!--          -->
+                                <!--     <Label Text="{Binding Balance}"/>  -->
+                                <!-- </StackLayout> -->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -31,25 +36,25 @@
             </ListView>
                
             </Frame>
-            <Frame StyleClass="walletItem">
-                <ListView x:Name="Transactions"
-                          ItemSelected="Transactions_OnItemSelected">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding To_User.Name}"  />
-                                        <Label Text="{Binding Amount}" />
-                                        <Label Text="{Binding Paid_At}" />
-                                    </StackLayout>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-            </Frame>
+            <!-- <Frame StyleClass="walletItem"> -->
+            <!--     <ListView x:Name="Transactions" -->
+            <!--               ItemSelected="Transactions_OnItemSelected"> -->
+            <!--         <ListView.ItemTemplate> -->
+            <!--             <DataTemplate> -->
+            <!--                 <ViewCell> -->
+            <!--                     <StackLayout Orientation="Vertical"> -->
+            <!--                         <StackLayout Orientation="Horizontal"> -->
+            <!--                             <Label Text="{Binding To_User.Name}"  /> -->
+            <!--                             <Label Text="{Binding Amount}" /> -->
+            <!--                             <Label Text="{Binding Paid_At}" /> -->
+            <!--                         </StackLayout> -->
+            <!--                     </StackLayout> -->
+            <!--                 </ViewCell> -->
+            <!--             </DataTemplate> -->
+            <!--         </ListView.ItemTemplate> -->
+            <!--     </ListView> -->
+            <!-- -->
+            <!-- </Frame> -->
             <Button x:Name="btnNewTransaction" Text="New Transaction"/>
             <Button x:Name="btnExchange" Text="Exchange Agent" Clicked="BtnExchange_OnClicked"/>
             <Button x:Name="btnNewWallet" Text="New Wallet" Clicked="BtnNewWallet_OnClicked"/>

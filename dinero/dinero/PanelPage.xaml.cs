@@ -19,7 +19,7 @@ namespace dinero
             InitializeComponent();
             WalletsList = new List<Wallet>();
             WalletsList = GetWallets();
-            Transactions.ItemsSource = GetTransactions();
+            // Transactions.ItemsSource = GetTransactions();
             Wallets.ItemsSource = WalletsList;
             btnNewTransaction.Clicked += BtnNewTransaction_Clicked;
         }
@@ -54,16 +54,16 @@ namespace dinero
             await Navigation.PushModalAsync(new WalletDetailsPage(walletDetail));
         }
 
-        public async void GetTransactionDetails()
-        {
-            var transactionDetail = (Transaction) Transactions.SelectedItem;
-            await Navigation.PushModalAsync(new TransactionDetails(transactionDetail));
-        }
+        // public async void GetTransactionDetails()
+        // {
+            // var transactionDetail = (Transaction) Transactions.SelectedItem;
+            // await Navigation.PushModalAsync(new TransactionDetails(transactionDetail));
+        // }
 
-        private void Transactions_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            GetTransactionDetails();
-        }
+        // private void Transactions_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        // {
+            // GetTransactionDetails();
+        // }
 
         private void Wallets_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
